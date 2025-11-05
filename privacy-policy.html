@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Primary SEO Meta Tags for Privacy Policy Page -->
+    <title>Privacy Policy - EduConnect | Your Data & Our Commitment</title>
+    <meta name="description" content="Read EduConnect's Privacy Policy to understand how we collect, use, and protect your personal information when you use our website for MBA college guidance.">
+    <meta name="keywords" content="privacy policy, EduConnect privacy, data protection, personal information, MBA guidance privacy, user data, online privacy">
+
+    <!-- Canonical Tag for Privacy Policy Page -->
+    <link rel="canonical" href="https://www.yourwebsite.com/privacy.html">
+
+    <!-- Open Graph Tags for Social Sharing (Update image URLs) -->
+    <meta property="og:title" content="EduConnect Privacy Policy" />
+    <meta property="og:description" content="Learn how EduConnect protects your privacy and handles your data while providing MBA college information." />
+    <meta property="og:image" content="https://www.yourwebsite.com/images/educonnect-privacy.jpg" /> <!-- Replace with an actual image for Privacy Policy -->
+    <meta property="og:url" content="https://www.yourwebsite.com/privacy.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="EduConnect" />
+
+    <!-- Twitter Card Tags for Twitter/X Sharing (Update image URLs) -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@YourEduConnectHandle" /> <!-- Replace with your Twitter handle -->
+    <meta name="twitter:title" content="EduConnect Privacy Policy: Your Data, Our Promise" />
+    <meta name="twitter:description" content="Understand EduConnect's commitment to your privacy and data security. Read our full Privacy Policy." />
+    <meta name="twitter:image" content="https://www.yourwebsite.com/images/educonnect-privacy-twitter.jpg" /> <!-- Replace with an actual image for Privacy Policy -->
+
+    <!-- Google Fonts Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --light-bg: #f0f2f5;
+            --light-text: #333;
+            --light-card-bg: #ffffff;
+            --light-shadow: rgba(0, 0, 0, 0.08);
+            --light-header-bg: #4a90e2;
+            --light-nav-mobile-bg: #e0e6ec;
+            --light-nav-mobile-link: #444;
+            --light-nav-mobile-border: #d0d5db;
+            --light-ad-bg: #e0e0e0;
+            --light-footer-bg: #3f51b5;
+            --light-popup-bg: #ffffff;
+            --light-popup-text: #333;
+            --light-popup-shadow: rgba(0, 0, 0, 0.2);
+
+            --dark-bg: #1a202c;
+            --dark-text: #e2e8f0;
+            --dark-card-bg: #2d3748;
+            --dark-shadow: rgba(0, 0, 0, 0.4);
+            --dark-header-bg: #2c3e50;
+            --dark-nav-mobile-bg: #3b4c61;
+            --dark-nav-mobile-link: #e2e8f0;
+            --dark-nav-mobile-border: #4a5568;
+            --dark-ad-bg: #4a5568;
+            --dark-footer-bg: #28303d;
+            --dark-popup-bg: #3b4c61;
+            --dark-popup-text: #e2e8f0;
+            --dark-popup-shadow: rgba(0, 0, 0, 0.5);
+
+            --primary-color: #4a90e2;
+            --primary-hover: #357bd8;
+            --success-color: #28a745;
+            --success-hover: #218838;
+            --danger-color: #dc3545;
+            --danger-hover: #c82333;
+            --info-color: #17a2b8;
+            --info-hover: #138496;
+
+            --border-radius-sm: 8px;
+            --border-radius-md: 12px;
+            --transition-ease: all 0.3s ease;
+            --transition-popup: all 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+        }
+
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--light-bg);
+            color: var(--light-text);
+            transition: var(--transition-ease);
+            line-height: 1.6;
+        }
+
+        body.dark-mode {
+            background: var(--dark-bg);
+            color: var(--dark-text);
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 25px;
+            background: var(--light-header-bg);
+            color: white;
+            position: relative;
+            box-shadow: 0 2px 10px var(--light-shadow);
+            transition: var(--transition-ease);
+        }
+        h2 {
+            margin-top: 20px;
+        }
+        body.dark-mode h2 {
+            background: linear-gradient(90deg, #00C9FF, #92FE9D); /* Blue to green */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: var(--light-text);
+            transition: var(--transition-ease);
+        }
+
+        body.dark-mode header {
+            background: var(--dark-header-bg);
+            box-shadow: 0 2px 10px var(--dark-shadow);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        .menu-icon {
+            font-size: 2rem;
+            cursor: pointer;
+            z-index: 10;
+            display: block; /* Always visible on mobile */
+        }
+
+        /* Navigation */
+        nav {
+            position: absolute;
+            top: 100%; /* Position below header */
+            right: 0;
+            background: var(--light-nav-mobile-bg);
+            width: 250px;
+            display: none;
+            flex-direction: column;
+            z-index: 9;
+            border-radius: 0 0 0 var(--border-radius-md);
+            overflow: hidden;
+            box-shadow: none; /* REMOVED BOX SHADOW FROM MOBILE NAV */
+            transition: var(--transition-ease);
+            transform: translateY(-10px); /* Initial state for animation */
+            opacity: 0; /* Initial state for animation */
+        }
+
+        nav.show {
+            display: flex;
+            transform: translateY(0); /* Final state for animation */
+            opacity: 1; /* Final state for animation */
+        }
+
+        body.dark-mode nav {
+            background: var(--dark-nav-mobile-bg);
+            box-shadow: none; /* REMOVED BOX SHADOW FROM MOBILE NAV DARK MODE */
+        }
+
+        nav a {
+            color: var(--light-nav-mobile-link);
+            padding: 18px 25px;
+            text-decoration: none;
+            border-bottom: none; /* REMOVED BORDER FROM MOBILE NAV LINKS */
+            transition: var(--transition-ease);
+            font-weight: 500;
+        }
+
+        body.dark-mode nav a {
+            color: var(--dark-nav-mobile-link);
+            border-bottom: none; /* REMOVED BORDER FROM MOBILE NAV LINKS DARK MODE */
+        }
+
+        nav a:hover {
+            background: rgba(0, 0, 0, 0.05);
+            padding-left: 30px; /* Subtle hover animation */
+        }
+        body.dark-mode nav a:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        /* Ad Placeholder - Removed from this page's main content, but keeping styles if needed elsewhere */
+        .ad-placeholder {
+            display: none; /* Hide this specific ad placeholder on privacy policy page */
+            background: var(--light-ad-bg);
+            padding: 30px 20px;
+            text-align: center;
+            font-size: 1.1rem;
+            color: #666;
+            border-bottom: 1px solid #ddd;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        body.dark-mode .ad-placeholder {
+            background: var(--dark-ad-bg);
+            color: var(--dark-text);
+            border-bottom: 1px solid #333;
+        }
+
+        /* Page specific styles for content */
+        .page-content {
+            padding: 25px;
+            max-width: 800px;
+            margin: 40px auto;
+            background: var(--light-card-bg);
+            border-radius: var(--border-radius-md);
+            box-shadow: 0 5px 15px var(--light-shadow);
+            transition: var(--transition-ease);
+        }
+
+        body.dark-mode .page-content {
+            background: var(--dark-card-bg);
+            box-shadow: 0 5px 15px var(--dark-shadow);
+        }
+
+        .page-content h1 {
+            margin-bottom: 20px;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-align: center;
+            transition: var(--transition-ease);
+        }
+        body.dark-mode .page-content h1 {
+            color: var(--info-color); /* Adjust color for dark mode */
+        }
+
+        .page-content h2 {
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--light-text);
+            transition: var(--transition-ease);
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 5px;
+            display: inline-block; /* To make border-bottom only under text */
+        }
+        body.dark-mode .page-content h2 {
+            color: var(--dark-text);
+            border-bottom-color: var(--info-color); /* Adjust color for dark mode */
+        }
+
+        .page-content p {
+            color: var(--light-text);
+            margin-bottom: 15px;
+            transition: var(--transition-ease);
+            text-align: left;
+        }
+        body.dark-mode .page-content p {
+            color: var(--dark-text);
+        }
+
+        .page-content ul {
+            list-style: disc;
+            margin-left: 20px;
+            margin-bottom: 15px;
+            color: var(--light-text);
+        }
+        body.dark-mode .page-content ul {
+            color: var(--dark-text);
+        }
+        .page-content ul li {
+            margin-bottom: 8px;
+        }
+        .page-content ol {
+            list-style: decimal;
+            margin-left: 20px;
+            margin-bottom: 15px;
+            color: var(--light-text);
+        }
+        body.dark-mode .page-content ol {
+            color: var(--dark-text);
+        }
+        .page-content ol li {
+            margin-bottom: 8px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--light-footer-bg);
+            color: white;
+            padding: 25px;
+            text-align: center;
+            margin-top: 40px;
+            transition: var(--transition-ease);
+            box-shadow: 0 -2px 10px var(--light-shadow);
+        }
+
+        body.dark-mode footer {
+            background: var(--dark-footer-bg);
+            box-shadow: 0 -2px 10px var(--dark-shadow);
+        }
+
+        footer p {
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+
+        footer a {
+            color: #a0c4ff;
+            margin: 0 12px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        footer a:hover {
+            color: #e0e0e0;
+            text-decoration: underline;
+        }
+
+        /* Theme Toggle Switch */
+        .theme-toggle {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-left: 20px;
+            font-weight: 500;
+            color: white; /* Desktop header color */
+        }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: 0.4s;
+            border-radius: 24px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: 0.4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: var(--info-color);
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+
+        /* Responsive Styles */
+        @media(min-width: 768px) {
+            .menu-icon {
+                display: none !important;
+            }
+            nav {
+                display: flex !important;
+                position: static !important;
+                flex-direction: row;
+                background: none !important; /* desktop nav transparent */
+                width: auto;
+                box-shadow: none; /* desktop nav no shadow */
+                transform: translateY(0);
+                opacity: 1;
+            }
+            nav a {
+                border: none; /* desktop nav links no border */
+                padding: 10px 15px;
+                color: white;
+                background: none;
+                padding-left: 15px;
+            }
+            nav a:hover {
+                background: rgba(255,255,255,0.1);
+                border-radius: var(--border-radius-sm);
+            }
+            .theme-toggle {
+                margin-left: 30px;
+            }
+            .chat-options { /* Ensure chat-options are hidden on larger screens */
+                display: none;
+            }
+            .profile-ad-wrapper { /* Ensure ads are hidden on larger screens if not relevant */
+                display: none;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .menu-icon {
+                display: block !important;
+            }
+            header {
+           padding: 5px 25px; 
+        }
+        body.dark-mode header {
+           padding: 5px 25px;   
+        }
+            nav {
+                display: none;
+                flex-direction: column;
+                align-items: flex-start;
+                position: absolute;
+                top: 60px;
+                right: 0;
+                background: var(--light-nav-mobile-bg); /* Mobile nav background */
+                width: 200px;
+                z-index: 9;
+                border-radius: 0 0 0 10px;
+                overflow: hidden;
+                padding-bottom: 10px;
+            }
+            nav.show { display: flex !important; }
+            body.dark-mode nav {
+                background: var(--dark-nav-mobile-bg);
+            }
+            body:not(.dark-mode) nav {
+                background: var(--light-nav-mobile-bg);
+            }
+            nav a {
+                border-bottom: 1px solid var(--light-nav-mobile-border); /* Mobile nav links border */
+                padding: 15px;
+                color: var(--light-nav-mobile-link);
+                width: 100%;
+            }
+            body.dark-mode nav a {
+                border-bottom: 1px solid var(--dark-nav-mobile-border);
+                color: var(--dark-nav-mobile-link);
+            }
+            nav a:hover {
+                background: rgba(0, 0, 0, 0.05);
+            }
+            body.dark-mode nav a:hover {
+                background: rgba(255, 255, 255, 0.05);
+            }
+            .theme-toggle {
+                padding: 15px;
+                justify-content: space-between;
+                margin-left: 0;
+                width: 100%;
+                border-bottom: 1px solid var(--light-nav-mobile-border); /* Mobile theme toggle border */
+                color: var(--light-nav-mobile-link);
+            }
+            body.dark-mode .theme-toggle {
+                border-bottom: 1px solid var(--dark-nav-mobile-border);
+                color: var(--dark-nav-mobile-link);
+            }
+
+            /* Hide chat-specific elements on mobile too */
+            .chat-options, .profile-ad-wrapper, .ad-sponsored, .ad-placeholder {
+                display: none;
+            }
+
+            .page-content {
+                padding: 20px 15px;
+                margin-top: 30px;
+                margin-left: 15px;
+                margin-right: 15px;
+            }
+            .page-content h1 {
+                font-size: 1.8rem;
+            }
+            .page-content h2 {
+                font-size: 1.5rem;
+            }
+            .page-content p, .page-content ul li, .page-content ol li {
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+    <script src="logo-loader.js"></script>
+</head>
+<body>
+    <header>
+        <div class="logo">EDUCONNECT</div>
+        <span class="menu-icon" onclick="toggleMenu()">☰</span>
+        <nav id="navMenu">
+            <a href="index.html">Home</a>
+            <a href="about-us.html">About Us</a>
+            <a href="contact.html">Contact Us</a>
+            <a href="privacy-policy.html">Privacy Policy</a> <!-- Added Privacy Policy link -->
+            <div class="theme-toggle">
+                <span>Dark Mode</span>
+                <label class="switch">
+                    <input type="checkbox" id="themeSwitch" onchange="toggleTheme()">
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </nav>
+    </header>
+
+    <main class="page-content">
+        <h1>Privacy Policy for EduConnect</h1>
+
+        <p>At EduConnect, we are committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website, EduConnect.in, including any other media form, media channel, mobile website, or mobile application related or connected thereto (collectively, the "Site"). Please read this privacy policy carefully. If you do not agree with the terms of this privacy policy, please do not access the site.</p>
+
+        <h2>1. Information We Collect</h2>
+        <p>We may collect information about you in a variety of ways. The information we may collect on the Site includes:</p>
+        <ul>
+            <li><strong>Personal Data:</strong> Personally identifiable information, such as your name, shipping address, email address, and telephone number, and demographic information, such as your age, gender, hometown, and interests, that you voluntarily give to us when you register with the Site or when you choose to participate in various activities related to the Site, such as online chat and message boards.</li>
+            <li><strong>Derivative Data:</strong> Information our servers automatically collect when you access the Site, such as your IP address, your browser type, your operating system, your access times, and the pages you have viewed directly before and after accessing the Site.</li>
+            <li><strong>Data From Contests, Giveaways, and Surveys:</strong> Personal and other information you may provide when entering contests or giveaways and/or responding to surveys.</li>
+        </ul>
+
+        <h2>2. How We Use Your Information</h2>
+        <p>Having accurate information about you permits us to provide you with a smooth, efficient, and customized experience. Specifically, we may use information collected about you via the Site to:</p>
+        <ol>
+            <li>Create and manage your account.</li>
+            <li>Deliver targeted advertising, coupons, newsletters, and other information regarding promotions and the Site to you.</li>
+            <li>Email you regarding your account or order.</li>
+            <li>Enable user-to-user communications.</li>
+            <li>Generate a personal profile about you to make your visit to the Site more personalized.</li>
+            <li>Increase the efficiency and operation of the Site.</li>
+            <li>Monitor and analyze usage and trends to improve your experience with the Site.</li>
+            <li>Notify you of updates to the Site.</li>
+            <li>Perform other business activities as needed.</li>
+            <li>Prevent fraudulent transactions, monitor against theft, and protect against criminal activity.</li>
+            <li>Process payments and refunds.</li>
+            <li>Request feedback and contact you about your use of the Site.</li>
+            <li>Resolve disputes and troubleshoot problems.</li>
+            <li>Respond to product and customer service requests.</li>
+            <li>Send you a newsletter.</li>
+        </ol>
+
+        <h2>3. Sharing Your Information</h2>
+        <p>We may share information we have collected about you in certain situations. Your information may be disclosed as follows:</p>
+        <ul>
+            <li><strong>By Law or to Protect Rights:</strong> If we believe the release of information about you is necessary to respond to legal process, to investigate or remedy potential violations of our policies, or to protect the rights, property, or safety of others, we may share your information as permitted or required by any applicable law, rule, or regulation.</li>
+            <li><strong>Third-Party Service Providers:</strong> We may share your information with third parties that perform services for us or on our behalf, including payment processing, data analysis, email delivery, hosting services, customer service, and marketing assistance.</li>
+            <li><strong>Marketing Communications:</strong> With your consent, or with an opportunity for you to withdraw consent, we may share your information with third parties for marketing purposes, as permitted by law.</li>
+        </ul>
+
+        <h2>4. Data Security</h2>
+        <p>We use administrative, technical, and physical security measures to help protect your personal information. While we have taken reasonable steps to secure the personal information you provide to us, please be aware that despite our efforts, no security measures are perfect or impenetrable, and no method of data transmission can be guaranteed against any interception or other type of misuse.</p>
+
+        <h2>5. Your Choices Regarding Your Information</h2>
+        <p>You may at any time review or change the information in your account or terminate your account by:</p>
+        <ul>
+            <li>Logging into your account settings and updating your account.</li>
+            <li>Contacting us using the contact information provided below.</li>
+        </ul>
+
+        <h2>6. Third-Party Websites</h2>
+        <p>The Site may contain links to third-party websites and applications of interest, including advertisements and external services, that are not affiliated with us. Once you have used these links to leave the Site, any information you provide to these third parties is not covered by this Privacy Policy, and we cannot guarantee the safety and privacy of your information. Before visiting and providing any information to any third-party websites, you should inform yourself of the privacy policies and practices (if any) of the third party responsible for that website, and should take those steps necessary to, in your discretion, protect the privacy of your information.</p>
+
+        <h2>7. Children's Privacy</h2>
+        <p>We do not knowingly solicit information from or market to children under the age of 13. If you become aware of any data we have collected from children under age 13, please contact us using the contact information provided below.</p>
+
+        <h2>8. Changes to This Privacy Policy</h2>
+        <p>We may update this Privacy Policy from time to time. The updated version will be indicated by an updated "Revised" date and the updated version will be effective as soon as it is accessible. We encourage you to review this Privacy Policy frequently to be informed of how we are protecting your information.</p>
+
+        <h2>Contact Us</h2>
+        <p>If you have questions or comments about this Privacy Policy, please contact us at:</p>
+        <div class="contact-details">
+            <ul>
+                <li><strong>Email:</strong> support@educonnect.in</li>
+                <li><strong>Phone:</strong> +91-8012345678</li>
+                <li><strong>Address:</strong> EduConnect Headquarters, 456 Knowledge Park, Sector 18, Noida, Uttar Pradesh - 201301, India</li>
+            </ul>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 EduConnect. All rights reserved.</p>
+        <div>
+            <a href="privacy.html">Privacy Policy</a> |
+            <a href="terms.html">Terms of Service</a> |
+            <a href="contact.html">Support</a>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById("navMenu").classList.toggle("show");
+            applyNavTheme();
+        }
+
+        // Theme Toggle Function (consistent with index.html)
+        function toggleTheme() {
+            document.body.classList.toggle("dark-mode");
+            const isDark = document.body.classList.contains("dark-mode");
+            localStorage.setItem("preferredTheme", isDark ? "dark" : "light");
+            applyNavTheme();
+        }
+
+        // Function to apply theme to mobile nav (consistent with index.html)
+        function applyNavTheme() {
+            const navMenu = document.getElementById("navMenu");
+            const isDarkBody = document.body.classList.contains("dark-mode");
+            const isMobile = window.innerWidth < 768;
+
+            if (isMobile) {
+                if (isDarkBody) {
+                    navMenu.style.backgroundColor = 'var(--dark-nav-mobile-bg)';
+                    navMenu.querySelectorAll('a').forEach(link => {
+                        link.style.color = 'var(--dark-nav-mobile-link)';
+                        link.style.borderBottomColor = 'var(--dark-nav-mobile-border)';
+                    });
+                    navMenu.querySelector('.theme-toggle span').style.color = 'var(--dark-nav-mobile-link)';
+                    navMenu.querySelector('.theme-toggle').style.borderBottomColor = 'var(--dark-nav-mobile-border)';
+                } else {
+                    navMenu.style.backgroundColor = 'var(--light-nav-mobile-bg)';
+                    navMenu.querySelectorAll('a').forEach(link => {
+                        link.style.color = 'var(--light-nav-mobile-link)';
+                        link.style.borderBottomColor = 'var(--light-nav-mobile-border)';
+                    });
+                    navMenu.querySelector('.theme-toggle span').style.color = 'var(--light-nav-mobile-link)';
+                    navMenu.querySelector('.theme-toggle').style.borderBottomColor = 'var(--light-nav-mobile-border)';
+                }
+            } else {
+                navMenu.style.backgroundColor = '';
+                navMenu.querySelectorAll('a').forEach(link => {
+                    link.style.color = 'white';
+                    link.style.borderBottomColor = '';
+                });
+                navMenu.querySelector('.theme-toggle span').style.color = 'white';
+                navMenu.querySelector('.theme-toggle').style.borderBottomColor = '';
+            }
+        }
+
+        // Initialize theme and apply nav theme on page load and resize
+        document.addEventListener("DOMContentLoaded", () => {
+            const savedTheme = localStorage.getItem("preferredTheme");
+            if (savedTheme === "dark") {
+                document.body.classList.add("dark-mode");
+                document.getElementById("themeSwitch").checked = true;
+            }
+            applyNavTheme();
+            window.addEventListener('resize', applyNavTheme);
+        });
+    </script>
+</body>
+</html>

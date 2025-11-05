@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Primary SEO Meta Tags for Contact Us Page -->
+    <title>Contact EduConnect - Get in Touch for MBA Guidance</title>
+    <meta name="description" content="Reach out to EduConnect for inquiries about MBA colleges, admissions, or support. Find our email, phone, and address here.">
+    <meta name="keywords" content="contact us, EduConnect contact, MBA guidance contact, education support, MBA India help, contact information, MBA queries">
+
+    <!-- Canonical Tag for Contact Us Page -->
+    <link rel="canonical" href="https://www.yourwebsite.com/contact.html">
+
+    <!-- Open Graph Tags for Social Sharing (Update image URLs) -->
+    <meta property="og:title" content="Contact EduConnect for MBA Information" />
+    <meta property="og:description" content="Need help with your MBA journey in India? Contact EduConnect's support team via email, phone, or address." />
+    <meta property="og:image" content="https://www.yourwebsite.com/images/educonnect-contact.jpg" /> <!-- Replace with an actual image for Contact Us -->
+    <meta property="og:url" content="https://www.yourwebsite.com/contact.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="EduConnect" />
+
+    <!-- Twitter Card Tags for Twitter/X Sharing (Update image URLs) -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@YourEduConnectHandle" /> <!-- Replace with your Twitter handle -->
+    <meta name="twitter:title" content="Contact EduConnect: Your MBA Queries Answered" />
+    <meta name="twitter:description" content="Get in touch with EduConnect for expert guidance on MBA colleges in India. Find our contact details here." />
+    <meta name="twitter:image" content="https://www.yourwebsite.com/images/educonnect-contact-twitter.jpg" /> <!-- Replace with an actual image for Contact Us -->
+
+    <!-- Google Fonts Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --light-bg: #f0f2f5;
+            --light-text: #333;
+            --light-card-bg: #ffffff;
+            --light-shadow: rgba(0, 0, 0, 0.08);
+            --light-header-bg: #4a90e2;
+            --light-nav-mobile-bg: #e0e6ec;
+            --light-nav-mobile-link: #444;
+            --light-nav-mobile-border: #d0d5db;
+            --light-ad-bg: #e0e0e0;
+            --light-footer-bg: #3f51b5;
+            --light-popup-bg: #ffffff;
+            --light-popup-text: #333;
+            --light-popup-shadow: rgba(0, 0, 0, 0.2);
+
+            --dark-bg: #1a202c;
+            --dark-text: #e2e8f0;
+            --dark-card-bg: #2d3748;
+            --dark-shadow: rgba(0, 0, 0, 0.4);
+            --dark-header-bg: #2c3e50;
+            --dark-nav-mobile-bg: #3b4c61;
+            --dark-nav-mobile-link: #e2e8f0;
+            --dark-nav-mobile-border: #4a5568;
+            --dark-ad-bg: #4a5568;
+            --dark-footer-bg: #28303d;
+            --dark-popup-bg: #3b4c61;
+            --dark-popup-text: #e2e8f0;
+            --dark-popup-shadow: rgba(0, 0, 0, 0.5);
+
+            --primary-color: #4a90e2;
+            --primary-hover: #357bd8;
+            --success-color: #28a745;
+            --success-hover: #218838;
+            --danger-color: #dc3545;
+            --danger-hover: #c82333;
+            --info-color: #17a2b8;
+            --info-hover: #138496;
+
+            --border-radius-sm: 8px;
+            --border-radius-md: 12px;
+            --transition-ease: all 0.3s ease;
+            --transition-popup: all 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+        }
+
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--light-bg);
+            color: var(--light-text);
+            transition: var(--transition-ease);
+            line-height: 1.6;
+        }
+
+        body.dark-mode {
+            background: var(--dark-bg);
+            color: var(--dark-text);
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 25px;
+            background: var(--light-header-bg);
+            color: white;
+            position: relative;
+            box-shadow: 0 2px 10px var(--light-shadow);
+            transition: var(--transition-ease);
+        }
+        h2 {
+            margin-top: 20px;
+        }
+        body.dark-mode h2 {
+            background: linear-gradient(90deg, #00C9FF, #92FE9D); /* Blue to green */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: var(--light-text);
+            transition: var(--transition-ease);
+        }
+
+        body.dark-mode header {
+            background: var(--dark-header-bg);
+            box-shadow: 0 2px 10px var(--dark-shadow);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        .menu-icon {
+            font-size: 2rem;
+            cursor: pointer;
+            z-index: 10;
+            display: block; /* Always visible on mobile */
+        }
+
+        /* Navigation */
+        nav {
+            position: absolute;
+            top: 100%; /* Position below header */
+            right: 0;
+            background: var(--light-nav-mobile-bg);
+            width: 250px;
+            display: none;
+            flex-direction: column;
+            z-index: 9;
+            border-radius: 0 0 0 var(--border-radius-md);
+            overflow: hidden;
+            box-shadow: none; /* REMOVED BOX SHADOW FROM MOBILE NAV */
+            transition: var(--transition-ease);
+            transform: translateY(-10px); /* Initial state for animation */
+            opacity: 0; /* Initial state for animation */
+        }
+
+        nav.show {
+            display: flex;
+            transform: translateY(0); /* Final state for animation */
+            opacity: 1; /* Final state for animation */
+        }
+
+        body.dark-mode nav {
+            background: var(--dark-nav-mobile-bg);
+            box-shadow: none; /* REMOVED BOX SHADOW FROM MOBILE NAV DARK MODE */
+        }
+
+        nav a {
+            color: var(--light-nav-mobile-link);
+            padding: 18px 25px;
+            text-decoration: none;
+            border-bottom: none; /* REMOVED BORDER FROM MOBILE NAV LINKS */
+            transition: var(--transition-ease);
+            font-weight: 500;
+        }
+
+        body.dark-mode nav a {
+            color: var(--dark-nav-mobile-link);
+            border-bottom: none; /* REMOVED BORDER FROM MOBILE NAV LINKS DARK MODE */
+        }
+
+        nav a:hover {
+            background: rgba(0, 0, 0, 0.05);
+            padding-left: 30px; /* Subtle hover animation */
+        }
+        body.dark-mode nav a:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        /* Ad Placeholder - Removed from this page's main content, but keeping styles if needed elsewhere */
+        .ad-placeholder {
+            display: none; /* Hide this specific ad placeholder on contact us page */
+            background: var(--light-ad-bg);
+            padding: 30px 20px;
+            text-align: center;
+            font-size: 1.1rem;
+            color: #666;
+            border-bottom: 1px solid #ddd;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        body.dark-mode .ad-placeholder {
+            background: var(--dark-ad-bg);
+            color: var(--dark-text);
+            border-bottom: 1px solid #333;
+        }
+
+        /* Page specific styles for content */
+        .page-content {
+            padding: 25px;
+            max-width: 800px;
+            margin: 40px auto;
+            background: var(--light-card-bg);
+            border-radius: var(--border-radius-md);
+            box-shadow: 0 5px 15px var(--light-shadow);
+            transition: var(--transition-ease);
+        }
+
+        body.dark-mode .page-content {
+            background: var(--dark-card-bg);
+            box-shadow: 0 5px 15px var(--dark-shadow);
+        }
+
+        .page-content h1 {
+            margin-bottom: 20px;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-align: center;
+            transition: var(--transition-ease);
+        }
+        body.dark-mode .page-content h1 {
+            color: var(--info-color); /* Adjust color for dark mode */
+        }
+
+        .page-content h2 {
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--light-text);
+            transition: var(--transition-ease);
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 5px;
+            display: inline-block; /* To make border-bottom only under text */
+        }
+        body.dark-mode .page-content h2 {
+            color: var(--dark-text);
+            border-bottom-color: var(--info-color); /* Adjust color for dark mode */
+        }
+
+        .page-content p {
+            color: var(--light-text);
+            margin-bottom: 15px;
+            transition: var(--transition-ease);
+            text-align: left;
+        }
+        body.dark-mode .page-content p {
+            color: var(--dark-text);
+        }
+
+        .contact-details ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 15px;
+        }
+        .contact-details ul li {
+            margin-bottom: 10px;
+            color: var(--light-text);
+            transition: var(--transition-ease);
+        }
+        body.dark-mode .contact-details ul li {
+            color: var(--dark-text);
+        }
+        .contact-details ul li strong {
+            color: var(--primary-color);
+            transition: var(--transition-ease);
+        }
+        body.dark-mode .contact-details ul li strong {
+            color: var(--info-color);
+        }
+
+        /* Contact Form Styles */
+        .contact-form {
+            margin-top: 30px;
+            padding: 20px;
+            background: var(--light-bg); /* Lighter background for form within card */
+            border-radius: var(--border-radius-md);
+            box-shadow: inset 0 0 8px rgba(0,0,0,0.05); /* Subtle inner shadow */
+        }
+        body.dark-mode .contact-form {
+            background: var(--dark-bg);
+            box-shadow: inset 0 0 8px rgba(255,255,255,0.05);
+        }
+
+        .contact-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--light-text);
+        }
+        body.dark-mode .contact-form label {
+            color: var(--dark-text);
+        }
+
+        .contact-form input[type="text"],
+        .contact-form input[type="email"],
+        .contact-form textarea {
+            width: calc(100% - 20px); /* Adjust for padding */
+            padding: 12px 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: var(--border-radius-sm);
+            background: var(--light-card-bg); /* Input background */
+            color: var(--light-text);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        body.dark-mode .contact-form input[type="text"],
+        body.dark-mode .contact-form input[type="email"],
+        body.dark-mode .contact-form textarea {
+            border: 1px solid #555;
+            background: var(--dark-card-bg);
+            color: var(--dark-text);
+        }
+
+        .contact-form input[type="text"]:focus,
+        .contact-form input[type="email"]:focus,
+        .contact-form textarea:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
+            outline: none;
+        }
+        body.dark-mode .contact-form input[type="text"]:focus,
+        body.dark-mode .contact-form input[type="email"]:focus,
+        body.dark-mode .contact-form textarea:focus {
+            border-color: var(--info-color);
+            box-shadow: 0 0 0 3px rgba(23, 162, 184, 0.2);
+        }
+
+        .contact-form textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .contact-form button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius-sm);
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition-ease);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .contact-form button:hover {
+            background: var(--primary-hover);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+            transform: translateY(-2px);
+        }
+        body.dark-mode .contact-form button {
+            background: var(--info-color);
+        }
+        body.dark-mode .contact-form button:hover {
+            background: var(--info-hover);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--light-footer-bg);
+            color: white;
+            padding: 25px;
+            text-align: center;
+            margin-top: 40px;
+            transition: var(--transition-ease);
+            box-shadow: 0 -2px 10px var(--light-shadow);
+        }
+
+        body.dark-mode footer {
+            background: var(--dark-footer-bg);
+            box-shadow: 0 -2px 10px var(--dark-shadow);
+        }
+
+        footer p {
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+
+        footer a {
+            color: #a0c4ff;
+            margin: 0 12px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        footer a:hover {
+            color: #e0e0e0;
+            text-decoration: underline;
+        }
+
+        /* Theme Toggle Switch */
+        .theme-toggle {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-left: 20px;
+            font-weight: 500;
+            color: white; /* Desktop header color */
+        }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: 0.4s;
+            border-radius: 24px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: 0.4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: var(--info-color);
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+
+        /* Responsive Styles */
+        @media(min-width: 768px) {
+            .menu-icon {
+                display: none !important;
+            }
+            nav {
+                display: flex !important;
+                position: static !important;
+                flex-direction: row;
+                background: none !important; /* desktop nav transparent */
+                width: auto;
+                box-shadow: none; /* desktop nav no shadow */
+                transform: translateY(0);
+                opacity: 1;
+            }
+            nav a {
+                border: none; /* desktop nav links no border */
+                padding: 10px 15px;
+                color: white;
+                background: none;
+                padding-left: 15px;
+            }
+            nav a:hover {
+                background: rgba(255,255,255,0.1);
+                border-radius: var(--border-radius-sm);
+            }
+            .theme-toggle {
+                margin-left: 30px;
+            }
+            .chat-options { /* Ensure chat-options are hidden on larger screens */
+                display: none;
+            }
+            .profile-ad-wrapper { /* Ensure ads are hidden on larger screens if not relevant */
+                display: none;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .menu-icon {
+                display: block !important;
+            }
+            header {
+           padding: 5px 25px; 
+        }
+        body.dark-mode header {
+           padding: 5px 25px;   
+        }
+            nav {
+                display: none;
+                flex-direction: column;
+                align-items: flex-start;
+                position: absolute;
+                top: 60px;
+                right: 0;
+                background: var(--light-nav-mobile-bg); /* Mobile nav background */
+                width: 200px;
+                z-index: 9;
+                border-radius: 0 0 0 10px;
+                overflow: hidden;
+                padding-bottom: 10px;
+            }
+            nav.show { display: flex !important; }
+            body.dark-mode nav {
+                background: var(--dark-nav-mobile-bg);
+            }
+            body:not(.dark-mode) nav {
+                background: var(--light-nav-mobile-bg);
+            }
+            nav a {
+                border-bottom: 1px solid var(--light-nav-mobile-border); /* Mobile nav links border */
+                padding: 15px;
+                color: var(--light-nav-mobile-link);
+                width: 100%;
+            }
+            body.dark-mode nav a {
+                border-bottom: 1px solid var(--dark-nav-mobile-border);
+                color: var(--dark-nav-mobile-link);
+            }
+            nav a:hover {
+                background: rgba(0, 0, 0, 0.05);
+            }
+            body.dark-mode nav a:hover {
+                background: rgba(255, 255, 255, 0.05);
+            }
+            .theme-toggle {
+                padding: 15px;
+                justify-content: space-between;
+                margin-left: 0;
+                width: 100%;
+                border-bottom: 1px solid var(--light-nav-mobile-border); /* Mobile theme toggle border */
+                color: var(--light-nav-mobile-link);
+            }
+            body.dark-mode .theme-toggle {
+                border-bottom: 1px solid var(--dark-nav-mobile-border);
+                color: var(--dark-nav-mobile-link);
+            }
+
+            /* Hide chat-specific elements on mobile too */
+            .chat-options, .profile-ad-wrapper, .ad-sponsored, .ad-placeholder {
+                display: none;
+            }
+
+            .page-content {
+                padding: 20px 15px;
+                margin-top: 30px;
+                margin-left: 15px;
+                margin-right: 15px;
+            }
+            .page-content h1 {
+                font-size: 1.8rem;
+            }
+            .page-content h2 {
+                font-size: 1.5rem;
+            }
+            .page-content p, .contact-details ul li {
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+    <script src="logo-loader.js"></script>
+</head>
+<body>
+    <header>
+        <div class="logo">EDUCONNECT</div>
+        <span class="menu-icon" onclick="toggleMenu()">☰</span>
+        <nav id="navMenu">
+            <a href="index.html">Home</a>
+            <a href="about.html">About Us</a>
+            <a href="contact.html">Contact Us</a>
+            <div class="theme-toggle">
+                <span>Dark Mode</span>
+                <label class="switch">
+                    <input type="checkbox" id="themeSwitch" onchange="toggleTheme()">
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </nav>
+    </header>
+
+    <main class="page-content">
+        <h1>Contact EduConnect</h1>
+
+        <p>We're here to help you on your MBA journey! Whether you have questions about specific colleges, need guidance on admissions, or want to provide feedback, please don't hesitate to reach out to the EduConnect team. We value your queries and are committed to providing timely and helpful responses.</p>
+
+        <h2>Get in Touch Directly</h2>
+        <p>You can contact us using the following details:</p>
+        <div class="contact-details">
+            <ul>
+                <li><strong>Email:</strong> support@educonnect.in</li>
+                <li><strong>Phone:</strong> +91-8012345678 (Mon-Sat, 9 AM - 7 PM IST)</li>
+                <li><strong>Address:</strong> EduConnect Headquarters, 456 Knowledge Park, Sector 18, Noida, Uttar Pradesh - 201301, India</li>
+            </ul>
+        </div>
+
+        <h2>Send Us a Message</h2>
+        <p>Prefer to send us a message directly? Fill out the form below, and we'll get back to you as soon as possible.</p>
+        <div class="contact-form">
+            <form action="#" method="POST"> <!-- Action should point to your server-side script for form submission -->
+                <label for="name">Your Name:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">Your Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="subject">Subject:</label>
+                <input type="text" id="subject" name="subject">
+
+                <label for="message">Your Message:</label>
+                <textarea id="message" name="message" required></textarea>
+
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 EduConnect. All rights reserved.</p>
+        <div>
+            <a href="privacy.html">Privacy Policy</a> |
+            <a href="terms.html">Terms of Service</a> |
+            <a href="contact.html">Support</a>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById("navMenu").classList.toggle("show");
+            applyNavTheme();
+        }
+
+        // Theme Toggle Function (consistent with index.html)
+        function toggleTheme() {
+            document.body.classList.toggle("dark-mode");
+            const isDark = document.body.classList.contains("dark-mode");
+            localStorage.setItem("preferredTheme", isDark ? "dark" : "light");
+            applyNavTheme();
+        }
+
+        // Function to apply theme to mobile nav (consistent with index.html)
+        function applyNavTheme() {
+            const navMenu = document.getElementById("navMenu");
+            const isDarkBody = document.body.classList.contains("dark-mode");
+            const isMobile = window.innerWidth < 768;
+
+            if (isMobile) {
+                if (isDarkBody) {
+                    navMenu.style.backgroundColor = 'var(--dark-nav-mobile-bg)';
+                    navMenu.querySelectorAll('a').forEach(link => {
+                        link.style.color = 'var(--dark-nav-mobile-link)';
+                        link.style.borderBottomColor = 'var(--dark-nav-mobile-border)';
+                    });
+                    navMenu.querySelector('.theme-toggle span').style.color = 'var(--dark-nav-mobile-link)';
+                    navMenu.querySelector('.theme-toggle').style.borderBottomColor = 'var(--dark-nav-mobile-border)';
+                } else {
+                    navMenu.style.backgroundColor = 'var(--light-nav-mobile-bg)';
+                    navMenu.querySelectorAll('a').forEach(link => {
+                        link.style.color = 'var(--light-nav-mobile-link)';
+                        link.style.borderBottomColor = 'var(--light-nav-mobile-border)';
+                    });
+                    navMenu.querySelector('.theme-toggle span').style.color = 'var(--light-nav-mobile-link)';
+                    navMenu.querySelector('.theme-toggle').style.borderBottomColor = 'var(--light-nav-mobile-border)';
+                }
+            } else {
+                navMenu.style.backgroundColor = '';
+                navMenu.querySelectorAll('a').forEach(link => {
+                    link.style.color = 'white';
+                    link.style.borderBottomColor = '';
+                });
+                navMenu.querySelector('.theme-toggle span').style.color = 'white';
+                navMenu.querySelector('.theme-toggle').style.borderBottomColor = '';
+            }
+        }
+
+        // Initialize theme and apply nav theme on page load and resize
+        document.addEventListener("DOMContentLoaded", () => {
+            const savedTheme = localStorage.getItem("preferredTheme");
+            if (savedTheme === "dark") {
+                document.body.classList.add("dark-mode");
+                document.getElementById("themeSwitch").checked = true;
+            }
+            applyNavTheme();
+            window.addEventListener('resize', applyNavTheme);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Local Girls</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* CSS Variables from Modern Profile Page */
+        :root {
+            --light-bg: #f0f2f5;
+            --light-text: #333;
+            --light-card-bg: #ffffff;
+            --light-shadow: rgba(0, 0, 0, 0.08);
+            --light-header-bg: #4a90e2;
+            --light-nav-mobile-bg: #e0e6ec;
+            --light-nav-mobile-link: #444;
+            --light-nav-mobile-border: #d0d5db;
+            --light-ad-bg: #e0e0e0;
+            --light-footer-bg: #3f51b5;
+            --light-popup-bg: #ffffff;
+            --light-popup-text: #333;
+            --light-popup-shadow: rgba(0, 0, 0, 0.2);
+
+            --dark-bg: #1a202c;
+            --dark-text: #e2e8f0;
+            --dark-card-bg: #2d3748;
+            --dark-shadow: rgba(0, 0, 0, 0.4);
+            --dark-header-bg: #2c3e50;
+            --dark-nav-mobile-bg: #3b4c61;
+            --dark-nav-mobile-link: #e2e8f0;
+            --dark-nav-mobile-border: #4a5568;
+            --dark-ad-bg: #4a5568;
+            --dark-footer-bg: #28303d;
+            --dark-popup-bg: #3b4c61;
+            --dark-popup-text: #e2e8f0;
+            --dark-popup-shadow: rgba(0, 0, 0, 0.5);
+
+            --primary-color: #4a90e2;
+            --primary-hover: #357bd8;
+            --success-color: #28a745;
+            --success-hover: #218838;
+            --danger-color: #dc3545;
+            --danger-hover: #c82333;
+            --info-color: #17a2b8;
+            --info-hover: #138496;
+
+            --border-radius-sm: 8px;
+            --border-radius-md: 12px;
+            --transition-ease: all 0.3s ease;
+            --transition-popup: all 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+        }
+
+        /* General Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--light-bg);
+            color: var(--light-text);
+            transition: var(--transition-ease);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Ensure body takes full viewport height */
+        }
+
+        body.dark-mode {
+            background: var(--dark-bg);
+            color: var(--dark-text);
+        }
+
+        /* Header Styles */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 25px;
+            background: var(--light-header-bg);
+            color: white;
+            position: relative;
+            box-shadow: 0 2px 10px var(--light-shadow);
+            transition: var(--transition-ease);
+        }
+
+        body.dark-mode header {
+            background: var(--dark-header-bg);
+            box-shadow: 0 2px 10px var(--dark-shadow);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        .menu-icon {
+            font-size: 2rem;
+            cursor: pointer;
+            z-index: 10;
+            display: block; /* Always visible on mobile */
+        }
+
+        /* Navigation Styles */
+        nav {
+            position: absolute;
+            top: 100%; /* Position below header */
+            right: 0;
+            background: var(--light-nav-mobile-bg);
+            width: 250px;
+            display: none;
+            flex-direction: column;
+            z-index: 9;
+            border-radius: 0 0 0 var(--border-radius-md);
+            overflow: hidden;
+            box-shadow: none; /* REMOVED BOX SHADOW FROM MOBILE NAV */
+            transition: var(--transition-ease);
+            transform: translateY(-10px); /* Initial state for animation */
+            opacity: 0; /* Initial state for animation */
+        }
+
+        nav.show {
+            display: flex;
+            transform: translateY(0); /* Final state for animation */
+            opacity: 1; /* Final state for animation */
+        }
+
+        body.dark-mode nav {
+            background: var(--dark-nav-mobile-bg);
+            box-shadow: none; /* REMOVED BOX SHADOW FROM MOBILE NAV DARK MODE */
+        }
+
+        nav a {
+            color: var(--light-nav-mobile-link);
+            padding: 18px 25px;
+            text-decoration: none;
+            border-bottom: none; /* REMOVED BORDER FROM MOBILE NAV LINKS */
+            transition: var(--transition-ease);
+            font-weight: 500;
+        }
+
+        body.dark-mode nav a {
+            color: var(--dark-nav-mobile-link);
+            border-bottom: none; /* REMOVED BORDER FROM MOBILE NAV LINKS DARK MODE */
+        }
+
+        nav a:hover {
+            background: rgba(0, 0, 0, 0.05);
+            padding-left: 30px; /* Subtle hover animation */
+        }
+        body.dark-mode nav a:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        /* Theme Toggle Switch */
+        .theme-toggle {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-left: 20px;
+            font-weight: 500;
+            color: white; /* Desktop header color */
+            /* Mobile styles for theme toggle will be in @media below */
+        }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: 0.4s;
+            border-radius: 24px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: 0.4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: var(--info-color);
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+
+        /* Main Content Container */
+        .main-content {
+            flex-grow: 1; /* Allows content to push footer down */
+            max-width: 800px;
+            margin: 0px auto; /* Consistent margin as profile-box */
+            padding: 0 25px; /* Add horizontal padding for smaller screens */
+        }
+
+        /* Form Styling (adapted to new theme) */
+        .form-box {
+            background: var(--light-card-bg);
+            border-radius: var(--border-radius-md);
+            padding: 40px; /* Increased padding for more modern feel */
+            box-shadow: 0 5px 20px var(--light-shadow);
+            text-align: center;
+            transition: var(--transition-ease);
+        }
+        body.dark-mode .form-box {
+            background: var(--dark-card-bg);
+            box-shadow: 0 5px 20px var(--dark-shadow);
+        }
+        .form-box h1 {
+            margin-bottom: 30px; /* More space below title */
+            font-size: 2rem; /* Larger heading */
+            font-weight: 700;
+            color: inherit; /* Inherits from body for theme consistency */
+        }
+
+        .form-group {
+            margin-bottom: 25px; /* Increased margin */
+            text-align: left; /* Align labels/dropdowns to left */
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 10px; /* More space below label */
+            font-weight: 600; /* Bolder label */
+            color: inherit; /* Inherits from body for theme consistency */
+        }
+
+        .modern-dropdown select {
+            width: 100%;
+            padding: 14px 20px; /* More padding */
+            border: 1px solid #ccc;
+            border-radius: var(--border-radius-sm); /* Rounded corners */
+            font-size: 1.05em;
+            background-color: var(--light-bg); /* Light background, matches page background */
+            color: var(--light-text);
+            appearance: none; /* Remove default dropdown arrow */
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            cursor: pointer;
+            transition: var(--transition-ease);
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+        }
+        body.dark-mode .modern-dropdown select {
+            background-color: var(--dark-bg);
+            border-color: #555;
+            color: var(--dark-text);
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.2);
+        }
+        .modern-dropdown select:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 4px rgba(74, 144, 226, 0.25);
+            outline: none;
+        }
+        .modern-dropdown {
+            position: relative;
+        }
+        .modern-dropdown::after { /* Custom dropdown arrow */
+            content: '▼';
+            position: absolute;
+            right: 18px;
+            top: 50%;
+            transform: translateY(-50%) scale(0.8);
+            pointer-events: none;
+            color: #888;
+            transition: var(--transition-ease);
+        }
+        body.dark-mode .modern-dropdown::after {
+            color: #aaa;
+        }
+
+        /* Checkbox Styling (adapted to new theme) */
+        .checkbox-group {
+            display: flex;
+            justify-content: center; /* Center checkboxes */
+            gap: 30px; /* More space between checkboxes */
+            margin-top: 25px;
+            margin-bottom: 40px; /* More space below checkboxes */
+        }
+        .modern-checkbox input[type="checkbox"] {
+            display: none; /* Hide default checkbox */
+        }
+        .modern-checkbox label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 500; /* Slightly bolder text */
+            color: inherit; /* Inherits from body for theme consistency */
+        }
+        .modern-checkbox label span {
+            display: inline-block;
+            width: 26px; /* Slightly larger checkbox */
+            height: 26px;
+            border: 2px solid #999; /* Softer border color */
+            border-radius: var(--border-radius-sm); /* More rounded for modern look */
+            margin-right: 12px;
+            position: relative;
+            transition: var(--transition-ease);
+            background-color: var(--light-bg);
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+        }
+        body.dark-mode .modern-checkbox label span {
+            background-color: var(--dark-bg);
+            border-color: #777;
+        }
+        .modern-checkbox input[type="checkbox"]:checked + label span {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.2), 0 0 0 4px rgba(74, 144, 226, 0.25);
+        }
+        .modern-checkbox input[type="checkbox"]:checked + label span::after {
+            content: '✔'; /* Checkmark */
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 18px; /* Larger checkmark */
+            line-height: 1;
+        }
+
+        /* Find Local Girls Button (adapted to new theme) */
+        .find-girls-btn {
+            width: 100%;
+            padding: 16px 25px; /* Larger padding */
+            background-color: var(--success-color); /* Green color for action */
+            color: white;
+            border: none;
+            border-radius: var(--border-radius-sm);
+            font-size: 1.2em; /* Larger font size */
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: var(--transition-ease);
+            box-shadow: 0 4px 10px rgba(40, 167, 69, 0.3); /* Green shadow */
+        }
+        .find-girls-btn:hover {
+            background-color: var(--success-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(40, 167, 69, 0.4);
+        }
+        .find-girls-btn:active {
+            transform: translateY(0);
+            box-shadow: none;
+        }
+
+        /* Modern Alert Box Styles (consistent with original provided alert) */
+        .modern-alert-box {
+            background-color: #ffb3b3;
+            color: black;
+            padding: 18px 25px;
+            border-radius: 10px;
+            margin: 20px auto 20px auto;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            max-width: 760px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            font-size: 1.05em;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #ff9999;
+        }
+        .modern-alert-box .alert-icon {
+            font-size: 1.8em;
+            color: #dc3545;
+        }
+        .modern-alert-box .alert-message {
+            flex-grow: 1;
+            font-weight: 500;
+        }
+        .modern-alert-box .close-btn {
+            background: none;
+            border: none;
+            color: #333;
+            font-size: 1.6em;
+            cursor: pointer;
+            padding: 0 5px;
+            transition: color 0.2s ease, transform 0.1s ease;
+        }
+        .modern-alert-box .close-btn:hover {
+            color: #333;
+            transform: scale(1.1);
+        }
+
+        /* Progress Bar Styles (consistent with original provided) */
+        .progress-container {
+            width: 100%;
+            background-color: #f3f3f3;
+            border-radius: 10px;
+            height: auto;
+            overflow: visible;
+            margin-top: 40px;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.2);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            transition: background 0.3s ease;
+        }
+        body.dark-mode .progress-container {
+            background-color: #1a202c;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.4);
+        }
+        .progress-bar {
+            width: 0%;
+            height: 15px;
+            background-color: var(--danger-color); /* Matches the original danger color */
+            border-radius: 10px;
+            text-align: center;
+            line-height: 30px;
+            color: white;
+            transition: width 0.5s ease-out;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            
+        }
+        #progressPercentage {
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: black; /* Default to black for visibility on light bar */
+            font-size: 0.9em;
+            font-weight: bold;
+            z-index: 2;
+            white-space: nowrap;
+        }
+        body.dark-mode #progressPercentage {
+            color: white; /* White on dark mode background */
+        }
+        .progress-text-below {
+            margin-top: 15px;
+            color: black;
+            font-weight: normal;
+            text-align: center;
+            width: 100%;
+            padding-bottom: 5px;
+        }
+        body.dark-mode .progress-text-below {
+            color: white;
+        }
+
+        /* Found Profiles Section (adapted to new theme) */
+        .found-profiles-section {
+            margin-top: 40px; /* More space */
+            text-align: center;
+        }
+        .found-profiles-section h2 {
+            margin-bottom: 25px; /* More space below heading */
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: inherit; /* Inherits from body for theme consistency */
+        }
+        .found-profiles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); /* Slightly larger cards */
+            gap: 25px; /* More space between cards */
+        }
+        .found-profile-card {
+            background: var(--light-card-bg);
+            border-radius: var(--border-radius-md);
+            padding: 20px; /* More padding */
+            box-shadow: 0 5px 20px var(--light-shadow);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: var(--transition-ease);
+            opacity: 0; /* Hidden initially for reveal */
+            position: relative;
+            overflow: hidden;
+        }
+        body.dark-mode .found-profile-card {
+            background: var(--dark-card-bg);
+            box-shadow: 0 5px 20px var(--dark-shadow);
+        }
+        .found-profile-card.visible { opacity: 1; }
+        .found-profile-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px var(--light-shadow); }
+        body.dark-mode .found-profile-card:hover { box-shadow: 0 10px 25px var(--dark-shadow); }
+
+        .found-profile-card img {
+            width: 110px; /* Slightly larger image */
+            height: 110px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--primary-color);
+            margin-bottom: 8px; /* Adjusted margin */
+            filter: blur(5px); /* Blurred initially */
+            transition: var(--transition-ease);
+        }
+        .found-profile-card.unblurred img {
+            filter: blur(0); /* Unblur when 100% reached */
+        }
+        /* Status styling for found profiles */
+        .found-profile-card .status {
+            font-size: 0.8rem; /* Smaller font size for status */
+            font-weight: 600;
+            margin-bottom: 8px; /* Space between status and name/city */
+            padding: 5px 12px;
+            border-radius: 20px;
+            display: inline-block;
+        }
+        .found-profile-card .online {
+            color: #ffffff;
+            background-color: var(--success-color);
+        }
+        .found-profile-card .offline {
+            color: #ffffff;
+            background-color: #9e9e9e;
+        }
+
+        .found-profile-card .name { font-weight: 700; margin-bottom: 5px; font-size: 1.1rem; }
+        .found-profile-card .city { font-size: 0.95em; color: #666; margin-bottom: 15px; }
+        body.dark-mode .found-profile-card .city { color: #aaa; }
+        .found-profile-card .chat-now-btn {
+            background-color: var(--primary-color); /* Primary color for chat button */
+            color: white;
+            border: none;
+            border-radius: var(--border-radius-sm);
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: var(--transition-ease);
+            font-weight: 600;
+        }
+        .found-profile-card .chat-now-btn:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-2px);
+        }
+
+        /* Shimmer Effect Styles */
+        @keyframes shimmer {
+            0% { background-position: -468px 0; }
+            100% { background-position: 468px 0; }
+        }
+        .shimmer-effect {
+            background: linear-gradient(to right, #f6f7f8 0%, #edeef1 20%, #f6f7f8 40%);
+            background-size: 1000px 100%;
+            animation: shimmer 1.5s infinite linear;
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 2; border-radius: var(--border-radius-md); pointer-events: none;
+        }
+        body.dark-mode .shimmer-effect {
+            background: linear-gradient(to right, #333 0%, #444 20%, #333 40%);
+            background-size: 1000px 100%;
+        }
+        .found-profile-card.visible .shimmer-effect { display: none; }
+
+
+        /* Footer (from Modern Profile Page) */
+        footer {
+            background: var(--light-footer-bg);
+            color: white;
+            padding: 25px;
+            text-align: center;
+            margin-top: auto; /* Pushes footer to the bottom */
+            transition: var(--transition-ease);
+            box-shadow: 0 -2px 10px var(--light-shadow);
+        }
+
+        body.dark-mode footer {
+            background: var(--dark-footer-bg);
+            box-shadow: 0 -2px 10px var(--dark-shadow);
+        }
+
+        footer p {
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+
+        footer a {
+            color: #a0c4ff;
+            margin: 0 12px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        footer a:hover {
+            color: #e0e0e0;
+            text-decoration: underline;
+        }
+
+        /* Responsive Ad Content */
+        .desktop-ad-content {
+          display: block;
+        }
+        
+        .mobile-ad-content {
+          display: none;
+        }
+        
+        .in-article-ad-container {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          margin: 10px auto;
+          padding: 10px 0;
+          background: var(--light-ad-bg);
+          border-radius: var(--border-radius-md);
+          box-shadow: 0 2px 8px var(--light-shadow);
+          transition: var(--transition-ease);
+          max-width: 90%;
+        }
+        
+        body.dark-mode .in-article-ad-container {
+          background: var(--dark-bg);
+          box-shadow: 0 2px 8px var(--dark-bg);
+        }
+        
+        .in-article-ad-container h3 {
+          font-size: 1rem;
+          margin-bottom: 12px;
+          font-weight: 600;
+          color: inherit;
+        }
+        
+        /* Mobile Styles */
+        @media (max-width: 767px) {
+          .desktop-ad-content {
+            display: none;
+          }
+          
+          .mobile-ad-content {
+            display: flex;
+            justify-content: center;
+          }
+          
+          .in-article-ad-container {
+            margin: 20px 15px;
+            max-width: 100%;
+          }
+        }
+        
+        /* Desktop Styles */
+        @media (min-width: 768px) {
+          .desktop-ad-content {
+            display: block;
+          }
+          
+          .mobile-ad-content {
+            display: none;
+          }
+          
+          .in-article-ad-container {
+            width: 80%;
+            max-width: 600px;
+          }
+        }
+
+        /* Responsive Design */
+        @media(min-width: 768px) {
+            .menu-icon {
+                display: none;
+            }
+            nav {
+                display: flex !important;
+                position: static;
+                flex-direction: row;
+                background: none !important; /* REMOVED BACKGROUND ON DESKTOP */
+                width: auto;
+                box-shadow: none; /* ENSURED NO SHADOW ON DESKTOP */
+                transform: translateY(0);
+                opacity: 1;
+            }
+            nav a {
+                border: none; /* ENSURED NO BORDER ON DESKTOP LINKS */
+                padding: 10px 15px;
+                color: white;
+                background: none;
+                padding-left: 15px; /* Reset padding for desktop */
+            }
+            nav a:hover {
+                background: rgba(255,255,255,0.1);
+                border-radius: var(--border-radius-sm);
+            }
+            .theme-toggle {
+                margin-left: 30px;
+            }
+
+            /* Main content width on desktop */
+            .main-content {
+                width: 700px; /* Fixed width for better control */
+                margin: 0px auto; /* Centered with more vertical space */
+                padding: 0; /* Remove horizontal padding set for mobile */
+            }
+
+            /* Form box width on desktop */
+            .form-box {
+                max-width: 600px; /* Optional: cap max width for very large screens */
+                margin: 0 auto; /* Center the form box */
+            }
+        }
+
+        @media (max-width: 767px) {
+            /* Mobile specific adjustments to ensure proper rendering without desktop overrides */
+            nav .theme-toggle {
+                padding: 18px 25px; /* Consistent with other nav links */
+                justify-content: space-between;
+                margin-left: 0;
+                border-bottom: none; /* REMOVED BORDER FOR MOBILE THEME TOGGLE */
+                color: var(--light-nav-mobile-link); /* Ensure correct text color on mobile nav */
+            }
+            header {
+           padding: 5px 25px; 
+        }
+        body.dark-mode header {
+           padding: 5px 25px;   
+        }
+            body.dark-mode nav .theme-toggle {
+                border-bottom: none; /* REMOVED BORDER FOR MOBILE THEME TOGGLE DARK MODE */
+                color: var(--dark-nav-mobile-link);
+            }
+            .main-content {
+                margin: 20px 15px; /* Reduced side margins for mobile */
+                padding: 0;
+            }
+            .form-box {
+                padding: 30px 20px; /* Smaller padding for mobile */
+            }
+            .form-box h1 {
+                font-size: 1.7rem; /* Smaller heading for mobile */
+                margin-bottom: 20px;
+            }
+            .form-group {
+                margin-bottom: 20px;
+            }
+            .form-group label {
+                margin-bottom: 8px;
+            }
+            .modern-dropdown select {
+                padding: 12px 15px;
+                font-size: 1em;
+            }
+            .modern-dropdown::after {
+                right: 12px;
+                transform: translateY(-50%) scale(0.7);
+            }
+            .checkbox-group {
+                gap: 20px;
+                margin-top: 20px;
+                margin-bottom: 30px;
+            }
+            .modern-checkbox label span {
+                width: 22px;
+                height: 22px;
+                margin-right: 8px;
+            }
+            .modern-checkbox input[type="checkbox"]:checked + label span::after {
+                font-size: 14px;
+            }
+            .find-girls-btn {
+                padding: 14px 20px;
+                font-size: 1em;
+            }
+            .found-profiles-grid {
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); /* Smaller cards on mobile */
+                gap: 15px;
+            }
+            .found-profile-card {
+                padding: 15px;
+            }
+            .found-profile-card img {
+                width: 90px;
+                height: 90px;
+            }
+            .found-profile-card .name {
+                font-size: 1em;
+            }
+            .found-profile-card .city {
+                font-size: 0.9em;
+            }
+            .found-profile-card .chat-now-btn {
+                padding: 8px 15px;
+                font-size: 0.9em;
+            }
+
+            /* MOBILE Alert Box specific styles */
+            .modern-alert-box {
+                flex-direction: row; align-items: center; justify-content: flex-start;
+                text-align: left; padding: 10px 15px; margin: 15px auto 1px auto;
+            }
+            .modern-alert-box .alert-icon { margin-bottom: 0; padding: 10px; }
+            .modern-alert-box .alert-message { margin-right: auto; color: #3b1919; }
+            .modern-alert-box .close-btn { display: none; }
+        }
+        
+        
+          .profile-ad-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 24px;
+  margin: 25px 25px;
+}
+.ad-sponsored {
+  display: none;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  background: var(--light-ad-bg);
+  border-radius: var(--border-radius-md);
+  box-shadow: 0 2px 8px var(--light-shadow);
+  padding: 8px 0;
+  text-align: center;
+  color: #666;
+}
+body.dark-mode .ad-sponsored {
+  background: var(--dark-bg);
+  color: var(--dark-text);
+  box-shadow: 0 2px 8px var(--dark-bg);
+}
+.ad-sponsored h3 {
+  font-size: 1rem;
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+.ad-rect {
+  width: 300px;
+  height: 250px;
+  background: #e0e0e0;
+  border-radius: 8px;
+  border: 1px dashed #bbb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #888;
+  font-size: 1.1rem;
+}
+body.dark-mode .ad-rect {
+  background: var(--dark-bg);
+  border-color: #333;
+  color: #e2e8f0;
+  border: 0px dashed #bbb;
+}
+
+/* Desktop: show left/right ads, hide mobile ad */
+@media (min-width: 768px) {
+  .ad-sponsored-left, .ad-sponsored-right {
+    display: flex;
+    flex-direction: column;
+    min-width: 300px;
+    max-width: 300px;
+  }
+  .ad-sponsored-mobile {
+    display: none;
+  }
+}
+
+body.dark-mode h1 {
+      color: var(--dark-text);
+      background: linear-gradient(90deg, #00C9FF, #92FE9D); /* Blue to green */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+    }
+
+/* Mobile: show only bottom ad, hide left/right ads */
+@media (max-width: 767px) {
+  .profile-ad-wrapper {
+    display: block;
+    margin: 0;
+  }
+  .ad-sponsored-left, .ad-sponsored-right {
+    display: none;
+  }
+  .ad-sponsored-mobile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 18px;
+    
+    width: 100%;
+    max-width: 90%;
+  }
+  .ad-rect {
+    width: 300px;
+    height: 250px;
+  }
+}
+/* Ad Placeholder */
+    .ad-placeholder {
+      background: var(--light-ad-bg);
+      padding: 5px 20px;
+      text-align: center;
+      font-size: 1.1rem;
+      color: #666;
+      border-bottom: 1px solid #ddd;
+      transition: var(--transition-ease);
+    }
+
+    body.dark-mode .ad-placeholder {
+      background: var(--dark-bg);
+      color: var(--dark-text);
+      border-bottom: 0px solid #333;
+    }
+    
+    /* Article */
+    article {
+      padding: 25px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    article h1 {
+      margin-bottom: 15px;
+      font-size: 1.8rem;
+      font-weight: 700;
+      background: linear-gradient(90deg, #f83600, #f9d423); /* Blue to green */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+      color: var(--light-text);
+      transition: var(--transition-ease);
+    }
+
+    body.dark-mode article h1 {
+      color: var(--dark-text);
+      background: linear-gradient(90deg, #00C9FF, #92FE9D); /* Blue to green */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+    }
+    article h2 {
+      margin-bottom: 15px;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--light-text);
+      transition: var(--transition-ease);
+    }
+
+    body.dark-mode article h2 {
+      color: var(--dark-text);
+      background: linear-gradient(90deg, #00C9FF, #92FE9D); /* Blue to green */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+    }
+
+    article p {
+      color: #555;
+      margin-bottom: 15px;
+      transition: var(--transition-ease);
+    }
+
+    body.dark-mode article p {
+      color: var(--dark-text);
+    }
+    </style>
+    <script src="ad-loader.js" defer></script>
+    <script src="logo-loader.js"></script>
+</head>
+<body>
+    <header>
+        <div class="logo">EDUCONNECT</div>
+        <span class="menu-icon" onclick="toggleMenu()">☰</span>
+        <nav id="navMenu">
+            <a href="index.html">Home</a>
+            <a href="about-us.html">About Us</a>
+            <a href="contact.html">Contact Us</a>
+            <div class="theme-toggle">
+                <span>Dark Mode</span>
+                <label class="switch">
+                    <input type="checkbox" id="themeSwitch" onchange="toggleTheme()">
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </nav>
+    </header>
+    <div class="ad-placeholder">
+  <p>Sponsored Content</p>
+  <div class="desktop-ad-content">
+    <div id="ad-container-1"></div>
+  </div>
+  <div class="mobile-ad-content">
+    <div class="ad-rect">
+      <div id="ad-container-mobile-header"></div>
+    </div>
+  </div>
+</div>
+<div class="profile-ad-wrapper">
+  <div class="ad-sponsored ad-sponsored-left">
+    <p>Sponsored</p>
+    <div class="ad-rect"><div id="ad-container-2"></div></div>
+  </div>
+    <div class="main-content">
+        <div class="form-box">
+            <h1>Find Girls From Your Area</h1>
+            <form id="findGirlsForm">
+                <div class="form-group">
+                    <label for="stateSelect">Select Your State</label>
+                    <div class="modern-dropdown">
+                        <select id="stateSelect">
+                            <option value="">-- Select State --</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="citySelect">Select Your City</label>
+                    <div class="modern-dropdown">
+                        <select id="citySelect" disabled>
+                            <option value="">-- Select City --</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="checkbox-group">
+                    <div class="modern-checkbox">
+                        <input type="checkbox" id="girlsCheckbox" value="girls">
+                        <label for="girlsCheckbox"><span></span>Girls</label>
+                    </div>
+                    <div class="modern-checkbox">
+                        <input type="checkbox" id="womenCheckbox" value="women">
+                        <label for="womenCheckbox"><span></span>Women</label>
+                    </div>
+                </div>
+
+                <div class="modern-alert-box" id="validationAlert" style="display: none;">
+                    <span class="alert-icon"><i class="fas fa-exclamation-circle"></i></span>
+                    <div class="alert-message" id="validationAlertMessage"></div>
+                    <button class="close-btn" onclick="document.getElementById('validationAlert').style.display='none';">&times;</button>
+                </div>
+
+                <button type="submit" class="find-girls-btn">Find Local Girls</button>
+            </form>
+
+            <div class="progress-container" id="progressBarContainer" style="display: none;">
+                <span id="progressPercentage">0%</span>
+                <div class="progress-bar" id="progressBar"></div>
+                <div class="progress-text-below" id="progressText">
+                    Finding local girls from your area...
+                </div>
+            </div>
+        </div>
+
+        <div class="found-profiles-section" id="foundProfilesSection" style="display: none;">
+            <h2 id="profilesFoundCount"></h2>
+            <div class="found-profiles-grid" id="foundProfilesGrid">
+            </div>
+        </div>
+    </div>
+    <div class="ad-sponsored ad-sponsored-right">
+    <p>Sponsored</p>
+    <div class="ad-rect"><div id="ad-container-3"></div></div>
+  </div>
+</div>
+<!-- For mobile, ad below profile box -->
+<div class="ad-sponsored ad-sponsored-mobile">
+  <h3>Sponsored</h3>
+  <div class="ad-rect">
+    <div id="ad-container-mobile-profile"></div> <!-- Added container ID -->
+  </div>
+</div>
+<article>
+    <h1>Which is the Best MBA College in Delhi and Why?</h1>
+
+    <p>Choosing the best MBA college in Delhi is a key step for many Indian students aiming for a career in management. Delhi and the National Capital Region (NCR) form a major business hub with many companies, offering great chances for industry exposure and job opportunities. Let's look at some of the top management institutes in this region.</p>
+    
+    <!-- ADD THIS IN-ARTICLE AD CONTAINER -->
+  <div class="in-article-ad-container">
+    <h3>Sponsored Content</h3>
+    <div class="ad-rect">
+      <div id="ad-container-article"></div>
+    </div>
+  </div>
+
+    <h2>Top MBA Colleges in Delhi NCR</h2>
+
+    <p>When discussing top MBA colleges in Delhi NCR, certain names consistently stand out. The Faculty of Management Studies (FMS), University of Delhi, is often considered a premier choice. Other highly regarded business schools include Management Development Institute (MDI) Gurgaon, Indian Institute of Foreign Trade (IIFT) Delhi, Indian Management Technology (IMT) Ghaziabad, and International Management Institute (IMI) Delhi. These institutes attract bright minds looking for quality management education.</p>
+
+    <h2>Why FMS Delhi is Often a Top Choice</h2>
+
+    <p>FMS Delhi is widely considered one of the top MBA colleges due to several strong reasons. Firstly, its long-standing legacy and reputation are very strong. It has consistently provided excellent management education for many years. Secondly, its location within the University of Delhi campus gives it a unique academic environment. The fee structure at FMS is remarkably low compared to most other top MBA programs, making its return on investment (ROI) exceptionally high.</p>
+
+    <p>The placements at FMS Delhi are consistently excellent. Top companies from various sectors, including consulting, finance, marketing, and general management, actively recruit from the campus. The average salary package offered to FMS graduates is always very competitive, which is a major draw for students seeking good career outcomes. The strong alumni network of FMS also plays a big role, with former students holding influential positions across many industries, helping current students with mentorship and job prospects.</p>
+
+    <h2>Other Excellent MBA Options in Delhi NCR</h2>
+
+    <p>While FMS Delhi is a highly sought-after institute, MDI Gurgaon is another excellent private business school known for its strong curriculum, experienced faculty, and strong corporate connections. It offers diverse MBA specializations and boasts impressive placements. IIFT Delhi is a great option for those interested in International Business, with a specialized curriculum and placements in global trade and finance roles.</p>
+
+    <p>IMT Ghaziabad and IMI Delhi are also popular choices. IMT is known for its strong marketing and finance programs and good industry interface. IMI Delhi offers a diverse range of management programs with a focus on leadership development. These colleges provide a vibrant campus life and attract a good number of companies for campus placements, offering a variety of roles to graduates.</p>
+
+    <h2>Choosing the Right MBA College for You</h2>
+
+    <p>To pick the best MBA college in Delhi NCR, consider what matters most to you. Look at the admission criteria, including required entrance exams like CAT, XAT, GMAT, or MAT, and their cut-off scores. Research the faculty's expertise – professors with real-world experience can greatly enhance your learning. Also, check the college's infrastructure, like libraries and modern classrooms, as a good learning environment is very important. Finally, deeply research the placement track record and the types of companies that visit for campus placements. Considering these factors will help you make a smart decision and choose the right management institute for your future career in the bustling Delhi NCR region.</p>
+
+    
+</article>
+
+
+    <footer>
+        <p>&copy; 2025 EduConnect. All rights reserved.</p>
+        <div>
+            <a href="privacy-policy.html">Privacy</a> |
+            <a href="about-us.html">About Us</a> |
+            <a href="contact.html">Contact</a>
+        </div>
+    </footer>
+
+    <script>
+        // Data for Indian States and Districts (Comprehensive List)
+        const indianStatesAndCities = {
+            "Andhra Pradesh": ["Anantapur", "Chittoor", "East Godavari", "Guntur", "Krishna", "Kurnool", "Nellore", "Prakasam", "Srikakulam", "Visakhapatnam", "Vizianagaram", "West Godavari", "YSR Kadapa"],
+            "Arunachal Pradesh": ["Anjaw", "Changlang", "Dibang Valley", "East Kameng", "East Siang", "Kra Daadi", "Kurung Kumey", "Lohit", "Longding", "Lower Dibang Valley", "Lower Siang", "Lower Subansiri", "Namsai", "Pakke-Kessang", "Papum Pare", "Shi Yomi", "Siang", "Tawang", "Tirap", "Upper Siang", "Upper Subansiri", "West Kameng", "West Siang"],
+            "Assam": ["Baksa", "Barpeta", "Biswanath", "Bongaigaaon", "Cachar", "Charaideo", "Chirang", "Darrang", "Dhemaji", "Dhubri", "Dibrugarh", "Dima Hasao", "Goalpara", "Golaghat", "Hailakandi", "Hojai", "Jorhat", "Kamrup Metropolitan", "Kamrup", "Karbi Anglong", "Karimganj", "Kokrajhar", "Lakhimpur", "Majuli", "Morigaon", "Nagaon", "Nalbari", "Sivasagar", "Sonitpur", "South Salmara-Mankachar", "Tamulpur", "Tinsukia", "Udalguri", "West Karbi Anglong"],
+            "Bihar": ["Araria", "Arwal", "Aurangabad", "Banka", "Begusarai", "Bhagalpur", "Bhojpur", "Buxar", "Darbhanga", "East Champaran", "Gaya", "Gopalganj", "Jamui", "Jehanabad", "Kaimur", "Katihar", "Khagaria", "Kishanganj", "Lakhisarai", "Madhepura", "Madhubani", "Munger", "Muzaffarpur", "Nalanda", "Nawada", "Patna", "Purnia", "Rohtas", "Saharsa", "Samastipur", "Saran", "Sheikhpura", "Sheohar", "Sitamarhi", "Siwan", "Supaul", "Vaishali", "West Champaran"],
+            "Chhattisgarh": ["Balod", "Baloda Bazar", "Balrampur-Ramanujganj", "Bastar", "Bemetara", "Bijapur", "Bilaspur", "Dantewada", "Dhamtari", "Durg", "Gariaband", "Gaurela-Pendra-Marwahi", "Janjgir-Champa", "Jashpur", "Kabirdham", "Kanker", "Kondagaon", "Korba", "Koriya", "Mahasamund", "Mungeli", "Narayanpur", "Raigarh", "Raipur", "Rajnandgaon", "Sukma", "Surajpur", "Surguja"],
+            "Goa": ["North Goa", "South Goa"],
+            "Gujarat": ["Ahmedabad", "Amreli", "Anand", "Aravalli", "Banaskantha", "Bharuch", "Bhavnagar", "Botad", "Chhota Udaipur", "Dahod", "Dang", "Devbhoomi Dwarka", "Gandhinagar", "Gir Somnath", "Jamnagar", "Junagadh", "Kheda", "Kutch", "Mahisagar", "Mehsana", "Morbi", "Narmada", "Navsari", "Panchmahal", "Patan", "Porbandar", "Rajkot", "Sabarkantha", "Surat", "Surendranagar", "Tapi", "Valsad", "Vadodara"],
+            "Haryana": ["Ambala", "Bhiwani", "Charkhi Dadri", "Faridabad", "Fatehabad", "Gurugram", "Hisar", "Jhajjar", "Jind", "Kaithal", "Karnal", "Kurukshetra", "Mahendragarh", "Nuh", "Palwal", "Panchkula", "Panipat", "Rewari", "Rohtak", "Sirsa", "Sonipat", "Yamunanagar"],
+            "Himachal Pradesh": ["Bilaspur", "Chamba", "Hamirpur", "Kangra", "Kinnaur", "Kullu", "Lahaul and Spiti", "Mandi", "Shimla", "Sirmaur", "Solan", "Una"],
+            "Jharkhand": ["Bokaro", "Chatra", "Deoghar", "Dhanbad", "Dumka", "East Singhbhum", "Garhwa", "Giridih", "Godda", "Gumla", "Hazaribagh", "Jamtara", "Khunti", "Koderma", "Latehar", "Lohardaga", "Pakur", "Palamu", "Ramgarh", "Ranchi", "Sahebganj", "Seraikela-Kharsawan", "Simdega", "West Singhbhum"],
+            "Karnataka": ["Bagalkot", "Ballari", "Belagavi", "Bengaluru Rural", "Bengaluru Urban", "Bidar", "Chamarajanagar", "Chikkaballapur", "Chikkamagaluru", "Chitradurga", "Dakshina Kannada", "Davanagere", "Dharwad", "Gadag", "Kalaburagi", "Hassan", "Haveri", "Kodagu", "Kolar", "Koppal", "Mandya", "Mysuru", "Raichur", "Ramanagara", "Shivamogga", "Tumakuru", "Udupi", "Uttara Kannada", "Vijayapura", "Yadgir"],
+            "Kerala": ["Alappuzha", "Ernakulam", "Idukki", "Kannur", "Kasaragod", "Kollam", "Kottayam", "Kozhikode", "Malappuram", "Palakkad", "Pathanamthitta", "Thiruvananthapuram", "Thrissur", "Wayanad"],
+            "Madhya Pradesh": ["Agar Malwa", "Alirajpur", "Anuppur", "Ashoknagar", "Balaghat", "Bhopal", "Barwani", "Betul", "Bhind", "Chhatarpur", "Chhindwara", "Damoh", "Datia", "Dewas", "Dhar", "Dindori", "Guna", "Gwalior", "Harda", "Hoshangabad", "Indore", "Jabalpur", "Jhabua", "Katni", "Khandwa", "Khargone", "Mandla", "Mandsaur", "Morena", "Narsinghpur", "Neemuch", "Panna", "Raisen", "Rajgarh", "Ratlam", "Rewa", "Sagar", "Satna", "Sehore", "Seoni", "Shahdol", "Shajapur", "Sheopur", "Shivpuri", "Sidhi", "Singrauli", "Tikamgarh", "Ujjain", "Umaria", "Vidisha"],
+            "Maharashtra": ["Ahmednagar", "Akola", "Amravati", "Aurangabad", "Beed", "Bhandara", "Buldhana", "Chandrapur", "Dhule", "Gadchiroli", "Gondia", "Hingoli", "Jalgaon", "Jalna", "Kolhapur", "Latur", "Mumbai City", "Mumbai Suburban", "Nagpur", "Nashik", "Nanded", "Nandurbar", "Osmanabad", "Palghar", "Parbhani", "Pune", "Raigad", "Ratnagiri", "Sangli", "Satara", "Sindhudurg", "Solapur", "Thane", "Wardha", "Washim", "Yavatmal"],
+            "Manipur": ["Bishnupur", "Chandel", "Churachandpur", "Imphal East", "Imphal West", "Jiribam", "Kakching", "Kamjong", "Kangpokpi", "Noney", "Pherzawl", "Senapati", "Tamenglong", "Tengnoupal", "Thoubal", "Ukhrul"],
+            "Meghalaya": ["East Garo Hills", "East Jaintia Hills", "East Khasi Hills", "North Garo Hills", "Ri-Bhoi", "South Garo Hills", "South West Garo Hills", "South West Khasi Hills", "West Garo Hills", "West Jaintia Hills", "West Khasi Hills"],
+            "Mizoram": ["Aizawl", "Champhai", "Hnahthial", "Kolasib", "Lawngtlai", "Lunglei", "Mamit", "Saiha", "Serchhip"],
+            "Nagaland": ["Dimapur", "Kiphire", "Kohima", "Longleng", "Mokokchung", "Mon", "Peren", "Phek", "Tuensang", "Wokha", "Zunheboto"],
+            "Odisha": ["Angul", "Balangir", "Balasore", "Bargarh", "Bhadrak", "Boudh", "Cuttack", "Debagarh", "Dhenkanal", "Gajapati", "Ganjam", "Jagatsinghpur", "Jajpur", "Jharsuguda", "Kalahandi", "Kandhamal", "Kendrapara", "Kendujhar", "Khordha", "Koraput", "Malkangiri", "Mayurbhanj", "Nabarangpur", "Nayagarh", "Nuapada", "Puri", "Rayagada", "Sambalpur", "Subarnapur", "Sundargarh"],
+            "Punjab": ["Amritsar", "Barnala", "Bathinda", "Faridkot", "Fatehgarh Sahib", "Fazilka", "Ferozepur", "Gurdaspur", "Hoshiarpur", "Jalandhar", "Kapurthala", "Ludhiana", "Mansa", "Moga", "Muktsar", "Pathankot", "Patiala", "Rupnagar", "Sangrur", "SAS Nagar (Mohali)", "Shaheed Bhagat Singh Nagar", "Sri Muktsar Sahib", "Tarn Taran"],
+            "Rajasthan": ["Ajmer", "Alwar", "Banswara", "Baran", "Barmer", "Bharatpur", "Bhilwara", "Bikaner", "Bundi", "Chittorgarh", "Churu", "Dausa", "Dholpur", "Dungarpur", "Hanumangarh", "Jaipur", "Jaisalmer", "Jalore", "Jhalawar", "Jhunjhunu", "Jodhpur", "Karauli", "Kota", "Nagaur", "Pali", "Pratapgarh", "Rajsamand", "Sawai Madhopur", "Sikar", "Sirohi", "Sri Ganganagar", "Tonk", "Udaipur"],
+            "Sikkim": ["East Sikkim", "North Sikkim", "South Sikkim", "West Sikkim"],
+            "Tamil Nadu": ["Ariyalur", "Chengalpattu", "Chennai", "Coimbatore", "Cuddalore", "Dharmapuri", "Dindigul", "Erode", "Kallakurichi", "Kancheepuram", "Kanyakumari", "Karur", "Krishnagiri", "Madurai", "Mayiladuthurai", "Nagapattinam", "Namakkal", "Nilgiris", "Perambalur", "Pudukkottai", "Ramanathapuram", "Ranipet", "Salem", "Sivaganga", "Tenkasi", "Thanjavur", "Theni", "Thoothukudi", "Tiruchirappalli", "Tirunelveli", "Tirupattur", "Tiruvallur", "Tiruvannamalai", "Tiruvarur", "Vellore", "Viluppuram", "Virudhunagar"],
+            "Telangana": ["Adilabad", "Bhadradri Kothagudem", "Hyderabad", "Jagtial", "Jangaon", "Jayashankar Bhupalpally", "Jogulamba Gadwal", "Kamareddy", "Karimnagar", "Khammam", "Komaram Bheem Asifabad", "Mahabubabad", "Mahabubnagar", "Mancherial", "Medak", "Medchal–Malkajgiri", "Mulugu", "Nagarkurnool", "Nalgonda", "Narayanpet", "Nirmal", "Nizamabad", "Peddapalli", "Rajanna Sircilla", "Ranga Reddy", "Sangareddy", "Siddipet", "Suryapet", "Vikarabad", "Wanaparthy", "Warangal Rural", "Warangal Urban", "Yadadri Bhuvanagiri"],
+            "Tripura": ["Dhalai", "Gomati", "Khowai", "North Tripura", "Sepahijala", "South Tripura", "Unakoti", "West Tripura"],
+            "Uttar Pradesh": ["Agra", "Aligarh", "Ambedkar Nagar", "Amethi", "Amroha", "Auraiya", "Ayodhya", "Azamgarh", "Baghpat", "Bahraich", "Ballia", "Balrampur", "Banda", "Bara Banki", "Bareilly", "Basti", "Bhadohi", "Bijnor", "Budaun", "Bulandshahr", "Chandauli", "Chitrakoot", "Deoria", "Etah", "Etawah", "Farrukhabad", "Fatehpur", "Firozabad", "Gautam Buddh Nagar", "Ghaziabad", "Ghazipur", "Gonda", "Gorakhpur", "Hamirpur", "Hapur", "Hardoi", "Hathras", "Jalaun", "Jaunpur", "Jhansi", "Kannauj", "Kanpur Dehat", "Kanpur Nagar", "Kasganj", "Kaushambi", "Kheri", "Kushinagar", "Lakhimpur Kheri", "Lalitpur", "Lucknow", "Maharajganj", "Mahoba", "Mainpuri", "Mathura", "Mau", "Meerut", "Mirzapur", "Moradabad", "Muzaffarnagar", "Pilibhit", "Pratapgarh", "Prayagraj", "Raebareli", "Rampur", "Saharanpur", "Sambhal", "Sant Kabir Nagar", "Shahjahanpur", "Shamli", "Shrawasti", "Siddharthnagar", "Sitapur", "Sonbhadra", "Sultanpur", "Unnao", "Varanasi"],
+            "Uttarakhand": ["Almora", "Bageshwar", "Chamoli", "Champawat", "Dehradun", "Haridwar", "Nainital", "Pauri Garhwal", "Pithoragarh", "Rudraprayag", "Tehri Garhwal", "Udham Singh Nagar", "Uttarkashi"],
+            "West Bengal": ["Alipurduar", "Bankura", "Paschim Bardhaman", "Purba Bardhaman", "Birbhum", "Cooch Behar", "Dakshin Dinajpur", "Darjeeling", "Hooghly", "Howrah", "Jalpaiguri", "Jhargram", "Kalimpong", "Kolkata", "Malda", "Murshidabad", "Nadia", "North 24 Parganas", "Paschim Medinipur", "Purba Medinipur", "Purulia", "South 24 Parganas", "Uttar Dinajpur"]
+        };
+
+        // Dummy Girl Profiles for local search (images are generic, but you can assign specific ones)
+        const localGirlProfiles = [
+            { name: "Aisha", img: "img/d1.webp", isOnline: true },
+            { name: "Bhavna", img: "img/d2.webp", isOnline: true },
+            { name: "Chitra", img: "img/d3.webp", isOnline: true },
+            { name: "Deepa", img: "img/d4.webp", isOnline: true },
+            { name: "Ekta", img: "img/d5.webp", isOnline: true },
+            { name: "Falguni", img: "img/d6.webp", isOnline: true },
+            { name: "Geeta", img: "img/d7.webp", isOnline: true },
+            { name: "Heena", img: "img/d8.webp", isOnline: true },
+            { name: "Indu", img: "img/d9.webp", isOnline: true },
+            { name: "Jaya", img: "img/d10.webp", isOnline: true },
+            { name: "Kiran", img: "img/d11.webp", isOnline: true },
+            { name: "Lata", img: "img/d12.webp", isOnline: true },
+            { name: "Mona", img: "img/d13.webp", isOnline: true },
+            { name: "Nisha", img: "img/d14.webp", isOnline: true },
+            { name: "Omisha", img: "img/d15.webp", isOnline: true },
+            { name: "Priyanka", img: "img/d16.webp", isOnline: true },
+            { name: "Roshni", img: "img/d17.webp", isOnline: true },
+            { name: "Sapna", img: "img/d18.webp", isOnline: true },
+            { name: "Tina", img: "img/d19.webp", isOnline: true },
+            { name: "Uma", img: "img/d20.webp", isOnline: true }
+        ];
+
+        // --- Header & Theme Toggle Functions ---
+        function toggleMenu() {
+            document.getElementById("navMenu").classList.toggle("show");
+            applyNavTheme();
+        }
+
+        function toggleTheme() {
+            document.body.classList.toggle("dark-mode");
+            const isDark = document.body.classList.contains("dark-mode");
+            localStorage.setItem("preferredTheme", isDark ? "dark" : "light");
+            applyNavTheme();
+        }
+
+        function applyNavTheme() {
+            const navMenu = document.getElementById("navMenu");
+            const isDarkBody = document.body.classList.contains("dark-mode");
+            const isMobile = window.innerWidth < 768;
+
+            if (isMobile) {
+                if (isDarkBody) {
+                    navMenu.style.backgroundColor = 'var(--dark-nav-mobile-bg)';
+                    navMenu.querySelectorAll('a').forEach(link => {
+                        link.style.color = 'var(--dark-nav-mobile-link)';
+                    });
+                    navMenu.querySelector('.theme-toggle span').style.color = 'var(--dark-nav-mobile-link)';
+                } else {
+                    navMenu.style.backgroundColor = 'var(--light-nav-mobile-bg)';
+                    navMenu.querySelectorAll('a').forEach(link => {
+                        link.style.color = 'var(--light-nav-mobile-link)';
+                    });
+                    navMenu.querySelector('.theme-toggle span').style.color = 'var(--light-nav-mobile-link)';
+                }
+            } else {
+                navMenu.style.backgroundColor = '';
+                navMenu.querySelectorAll('a').forEach(link => {
+                    link.style.color = 'white';
+                });
+                navMenu.querySelector('.theme-toggle span').style.color = 'white';
+            }
+        }
+        // --- End Header & Theme Toggle Functions ---
+
+        // --- Form Logic ---
+        const stateSelect = document.getElementById('stateSelect');
+        const citySelect = document.getElementById('citySelect');
+        const girlsCheckbox = document.getElementById('girlsCheckbox');
+        const womenCheckbox = document.getElementById('womenCheckbox');
+        const findGirlsForm = document.getElementById('findGirlsForm');
+        const validationAlert = document.getElementById('validationAlert');
+        const validationAlertMessage = document.getElementById('validationAlertMessage');
+
+        // Populate States Dropdown
+        function populateStates() {
+            for (const state in indianStatesAndCities) {
+                const option = document.createElement('option');
+                option.value = state;
+                option.textContent = state;
+                stateSelect.appendChild(option);
+            }
+        }
+
+        // Populate Cities Dropdown based on selected State
+        stateSelect.addEventListener('change', () => {
+            const selectedState = stateSelect.value;
+            citySelect.innerHTML = '<option value="">-- Select City --</option>'; // Clear existing cities
+            citySelect.disabled = true; // Disable until a state is selected
+
+            if (selectedState) {
+                const cities = indianStatesAndCities[selectedState];
+                cities.forEach(city => {
+                    const option = document.createElement('option');
+                    option.value = city;
+                    option.textContent = city;
+                    citySelect.appendChild(option);
+                });
+                citySelect.disabled = false;
+            }
+        });
+
+        // Show validation alert
+        function showValidationAlert(message) {
+            validationAlertMessage.textContent = message;
+            validationAlert.style.display = 'flex';
+        }
+
+        // --- Progress Bar & Profile Display Logic ---
+        const progressBarContainer = document.getElementById('progressBarContainer');
+        const progressBar = document.getElementById('progressBar');
+        const progressPercentage = document.getElementById('progressPercentage');
+        const progressText = document.getElementById('progressText');
+        const foundProfilesSection = document.getElementById('foundProfilesSection');
+        const profilesFoundCount = document.getElementById('profilesFoundCount');
+        const foundProfilesGrid = document.getElementById('foundProfilesGrid');
+
+        // Pass selectedCity to this function
+        function createFoundProfileCard(profile, selectedCityForDisplay) {
+            const card = document.createElement("div");
+            card.className = "found-profile-card visible"; // Start visible for fade-in
+            card.innerHTML = `
+                <div class="shimmer-effect"></div>
+                <img src="${profile.img}" alt="${profile.name}">
+                <div class="status ${profile.isOnline ? 'online' : 'offline'}">${profile.isOnline ? 'Online' : 'Offline'}</div>
+                <div class="name">${profile.name}</div>
+                <div class="city">${selectedCityForDisplay}</div>
+                <button class="chat-now-btn">Chat Now</button>
+            `;
+            // Add event listener to Chat Now button
+            card.querySelector('.chat-now-btn').addEventListener('click', () => {
+                // Pass the profile data, overriding the city with the selected one
+                localStorage.setItem('selectedGirlProfile', JSON.stringify({
+                    name: profile.name,
+                    city: selectedCityForDisplay, // Ensure the correct city is passed
+                    img: profile.img,
+                    isOnline: profile.isOnline
+                }));
+                window.location.href = "chat-interface.html"; // Redirect to chat-interface.html
+            });
+
+            // Remove shimmer and unblur image after a short delay
+            setTimeout(() => {
+                card.querySelector('img').classList.add('unblurred');
+                card.querySelector('.shimmer-effect').style.display = 'none';
+            }, 1000); // Give shimmer a moment to show, then unblur
+
+            return card;
+        }
+
+        // Modified to accept selectedCity
+        function loadLocalProfilesWithProgressBar(selectedCity) {
+            progressBarContainer.style.display = 'flex';
+            foundProfilesSection.style.display = 'none'; // Hide profiles section initially
+            foundProfilesGrid.innerHTML = ''; // Clear previous profiles
+            validationAlert.style.display = 'none'; // Hide any previous validation alerts
+
+            let progress = 0;
+            const totalDuration = 10000; // 10 seconds
+            const totalSteps = 100;
+            const intervalTime = totalDuration / totalSteps;
+
+            const revealStartPercent = 25;
+            // Randomly select 3 to 9 profiles
+            const numberOfProfilesToDisplay = Math.floor(Math.random() * (9 - 3 + 1)) + 3;
+            const shuffledProfiles = [...localGirlProfiles].sort(() => 0.5 - Math.random());
+            const selectedProfiles = shuffledProfiles.slice(0, numberOfProfilesToDisplay);
+
+            const profilesToRevealCount = selectedProfiles.length;
+            const percentageRangeForReveal = totalSteps - revealStartPercent;
+
+            const progressInterval = setInterval(() => {
+                if (progress <= totalSteps) {
+                    progressBar.style.width = progress + '%';
+                    progressPercentage.textContent = progress + '%';
+                    progressText.textContent = "Finding local girls from your area..."; // Ensure this text is set
+
+                    // Dynamic text color for progress bar
+                    if (progress > 50) {
+                        progressText.style.color = 'white';
+                    } else {
+                        progressText.style.color = 'black';
+                    }
+                    if (document.body.classList.contains('dark-mode')) {
+                        progressText.style.color = 'white';
+                    }
+
+                    if (progress >= revealStartPercent) {
+                        const progressInRevealPhase = progress - revealStartPercent;
+                        const profilesToShow = Math.min(
+                            profilesToRevealCount,
+                            Math.floor((progressInRevealPhase / percentageRangeForReveal) * profilesToRevealCount)
+                        );
+
+                        // Append profiles one by one
+                        for (let i = foundProfilesGrid.children.length; i < profilesToShow; i++) {
+                            const card = createFoundProfileCard(selectedProfiles[i], selectedCity); // Pass selectedCity
+                            foundProfilesGrid.appendChild(card);
+                        }
+                    }
+                    progress++;
+                } else {
+                    clearInterval(progressInterval);
+                    progressBarContainer.style.display = 'none';
+                    foundProfilesSection.style.display = 'block'; // Show profiles section
+
+                    // Ensure all images are unblurred and shimmer removed at the end
+                    Array.from(foundProfilesGrid.children).forEach(card => {
+                        card.querySelector('img').classList.add('unblurred');
+                        const shimmer = card.querySelector('.shimmer-effect');
+                        if (shimmer) shimmer.style.display = 'none';
+                    });
+
+                    // Update found count text with selected city
+                    profilesFoundCount.textContent = `${numberOfProfilesToDisplay} profiles found in ${selectedCity}`;
+                }
+            }, intervalTime);
+        }
+
+        // --- Form Submission Handler ---
+        findGirlsForm.addEventListener('submit', (event) => {
+            event.preventDefault(); // Prevent default form submission
+
+            const selectedState = stateSelect.value;
+            const selectedCity = citySelect.value;
+            const isGirlsChecked = girlsCheckbox.checked;
+            const isWomenChecked = womenCheckbox.checked;
+
+            let errorMessage = '';
+
+            if (!selectedState) {
+                errorMessage = "Please select a State.";
+            } else if (!selectedCity) {
+                errorMessage = "Please select a City.";
+            } else if (!isGirlsChecked && !isWomenChecked) {
+                errorMessage = "Please select at least 'Girls' or 'Women'.";
+            }
+
+            if (errorMessage) {
+                showValidationAlert(errorMessage);
+                // Hide progress bar and profiles if validation fails after a previous successful search
+                progressBarContainer.style.display = 'none';
+                foundProfilesSection.style.display = 'none';
+            } else {
+                // All validations pass, hide alert and start progress bar
+                validationAlert.style.display = 'none';
+                loadLocalProfilesWithProgressBar(selectedCity); // Pass selectedCity
+            }
+        });
+
+        // --- Initial Load & Event Listeners ---
+        document.addEventListener("DOMContentLoaded", () => {
+            // Apply saved theme
+            const savedTheme = localStorage.getItem("preferredTheme");
+            if (savedTheme === "dark") {
+                document.body.classList.add("dark-mode");
+                document.getElementById("themeSwitch").checked = true;
+            }
+            applyNavTheme();
+            window.addEventListener('resize', applyNavTheme);
+
+            populateStates(); // Populate states on page load
+        });
+    </script>
+</body>
+</html>

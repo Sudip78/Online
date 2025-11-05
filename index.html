@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Modern Profile Page</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --light-bg: #f0f2f5;
+      --light-text: #333;
+      --light-card-bg: #ffffff;
+      --light-shadow: rgba(0, 0, 0, 0.08);
+      --light-header-bg: #4a90e2;
+      --light-nav-mobile-bg: #e0e6ec;
+      --light-nav-mobile-link: #444;
+      --light-nav-mobile-border: #d0d5db;
+      --light-ad-bg: #e0e0e0;
+      --light-footer-bg: #3f51b5;
+      --light-popup-bg: #ffffff;
+      --light-popup-text: #333;
+      --light-popup-shadow: rgba(0, 0, 0, 0.2);
+
+      --dark-bg: #1a202c;
+      --dark-text: #e2e8f0;
+      --dark-card-bg: #2d3748;
+      --dark-shadow: rgba(0, 0, 0, 0.4);
+      --dark-header-bg: #2c3e50;
+      --dark-nav-mobile-bg: #3b4c61;
+      --dark-nav-mobile-link: #e2e8f0;
+      --dark-nav-mobile-border: #4a5568;
+      --dark-ad-bg: #4a5568;
+      --dark-footer-bg: #28303d;
+      --dark-popup-bg: #3b4c61;
+      --dark-popup-text: #e2e8f0;
+      --dark-popup-shadow: rgba(0, 0, 0, 0.5);
+
+      --primary-color: #4a90e2;
+      --primary-hover: #357bd8;
+      --success-color: #28a745;
+      --success-hover: #218838;
+      --danger-color: #dc3545;
+      --danger-hover: #c82333;
+      --info-color: #17a2b8;
+      --info-hover: #138496;
+
+      --border-radius-sm: 8px;
+      --border-radius-md: 12px;
+      --transition-ease: all 0.3s ease;
+      --transition-popup: all 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    }
+
+ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    ul li {
+      position: relative;
+      padding-left: 25px;
+      margin-bottom: 8px;
+    }
+    ul li::before {
+      content: "✅";
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+
+    /* Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--light-bg);
+      color: var(--light-text);
+      transition: var(--transition-ease);
+      line-height: 1.6;
+    }
+
+    body.dark-mode {
+      background: var(--dark-bg);
+      color: var(--dark-text);
+    }
+
+    /* Header */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 25px;
+      background: var(--light-header-bg);
+      color: white;
+      position: relative;
+      box-shadow: 0 2px 10px var(--light-shadow);
+      transition: var(--transition-ease);
+    }
+
+    body.dark-mode header {
+      background: var(--dark-header-bg);
+      box-shadow: 0 2px 10px var(--dark-shadow);
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+    }
+
+    .menu-icon {
+      font-size: 2rem;
+      cursor: pointer;
+      z-index: 10;
+      display: block; /* Always visible on mobile */
+    }
+
+    /* Navigation */
+    nav {
+      position: absolute;
+      top: 100%; /* Position below header */
+      right: 0;
+      background: var(--light-nav-mobile-bg);
+      width: 250px;
+      display: none;
+      flex-direction: column;
+      z-index: 9;
+      border-radius: 0 0 0 var(--border-radius-md);
+      overflow: hidden;
+      box-shadow: none; /* REMOVED BOX SHADOW FROM MOBILE NAV */
+      transition: var(--transition-ease);
+      transform: translateY(-10px); /* Initial state for animation */
+      opacity: 0; /* Initial state for animation */
+    }
+
+    nav.show {
+      display: flex;
+      transform: translateY(0); /* Final state for animation */
+      opacity: 1; /* Final state for animation */
+    }
+
+    body.dark-mode nav {
+      background: var(--dark-nav-mobile-bg);
+      box-shadow: none; /* REMOVED BOX SHADOW FROM MOBILE NAV DARK MODE */
+    }
+
+    nav a {
+      color: var(--light-nav-mobile-link);
+      padding: 18px 25px;
+      text-decoration: none;
+      border-bottom: none; /* REMOVED BORDER FROM MOBILE NAV LINKS */
+      transition: var(--transition-ease);
+      font-weight: 500;
+    }
+
+    body.dark-mode nav a {
+      color: var(--dark-nav-mobile-link);
+      border-bottom: none; /* REMOVED BORDER FROM MOBILE NAV LINKS DARK MODE */
+    }
+
+    nav a:hover {
+      background: rgba(0, 0, 0, 0.05);
+      padding-left: 30px; /* Subtle hover animation */
+    }
+    body.dark-mode nav a:hover {
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    /* Ad Placeholder */
+    .ad-placeholder {
+      background: var(--light-ad-bg);
+      padding: 5px 20px 0px 20px;
+      text-align: center;
+      font-size: 1.1rem;
+      color: #666;
+      border-bottom: 1px solid #ddd;
+      transition: var(--transition-ease);
+    }
+
+    body.dark-mode .ad-placeholder {
+      background: var(--dark-bg);
+      color: var(--dark-text);
+      border-bottom: 0px solid #333;
+    }
+
+    /* Profile Box */
+    .profile-box {
+      background: var(--light-card-bg);
+      margin: 25px;
+      padding: 30px;
+      border-radius: var(--border-radius-md);
+      text-align: center;
+      box-shadow: 0 5px 20px var(--light-shadow);
+      transition: var(--transition-ease);
+      position: relative;
+      overflow: hidden;
+      max-width: 90%; /* Default for smaller screens */
+    }
+
+    body.dark-mode .profile-box {
+      background: var(--dark-card-bg);
+      box-shadow: 0 5px 20px var(--dark-shadow);
+    }
+
+    .round-image {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 5px; /* Reduced margin to bring status closer */
+      border: 4px solid var(--primary-color);
+      box-shadow: 0 0 0 4px rgba(74, 144, 226, 0.3);
+      transition: var(--transition-ease);
+    }
+
+    .profile-box:hover .round-image {
+      transform: scale(1.05);
+      border-color: var(--success-color);
+    }
+
+    .status {
+      font-size: 0.85rem; /* Smaller font size for status */
+      font-weight: 600;
+      margin-bottom: 10px; /* Space between status and name/city */
+      padding: 4px 10px;
+      border-radius: 20px;
+      display: inline-block; /* Allows centering within text-align: center parent */
+      /* Removed relative positioning to ensure natural centering */
+    }
+
+    .online {
+      color: #ffffff;
+      background-color: var(--success-color);
+    }
+
+    .offline {
+      color: #ffffff;
+      background-color: #9e9e9e;
+    }
+
+    .name-city {
+      margin-bottom: 20px;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: inherit; /* Inherits from body for theme consistency */
+    }
+
+    /* Buttons */
+    .button-group {
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 15px;
+      gap: 10px;
+    }
+
+    .button-group button,
+    .find-new-btn {
+      flex: 1;
+      padding: 12px 15px;
+      border: none;
+      border-radius: var(--border-radius-sm);
+      font-size: 1rem;
+      cursor: pointer;
+      font-weight: 600;
+      transition: var(--transition-ease);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .video-call, .chat-now {
+      background: #ccc;
+      color: #777;
+      cursor: not-allowed;
+    }
+
+    .video-call.enabled {
+      background: var(--success-color);
+      color: white;
+      cursor: pointer;
+    }
+    .video-call.enabled:hover {
+      background: var(--success-hover);
+      transform: translateY(-2px);
+    }
+
+    .chat-now.enabled {
+      background: var(--primary-color);
+      color: white;
+      cursor: pointer;
+    }
+    .chat-now.enabled:hover {
+      background: var(--primary-hover);
+      transform: translateY(-2px);
+    }
+
+    .find-new-btn {
+      background: var(--danger-color);
+      color: white;
+      width: 100%; /* Full width by default */
+      margin-top: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    .find-new-btn:hover {
+      background: var(--danger-hover);
+      transform: translateY(-2px);
+    }
+
+    /* Article */
+    article {
+      padding: 25px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    article h1 {
+      margin-bottom: 15px;
+      font-size: 1.8rem;
+      font-weight: 700;
+      background: linear-gradient(90deg, #f83600, #f9d423); /* Blue to green */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+      color: var(--light-text);
+      transition: var(--transition-ease);
+    }
+
+    body.dark-mode article h1 {
+      color: var(--dark-text);
+      background: linear-gradient(90deg, #00C9FF, #92FE9D); /* Blue to green */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+    }
+    article h2 {
+      margin-bottom: 15px;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--light-text);
+      transition: var(--transition-ease);
+    }
+
+    body.dark-mode article h2 {
+      color: var(--dark-text);
+      background: linear-gradient(90deg, #00C9FF, #92FE9D); /* Blue to green */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+    }
+
+    article p {
+      color: #555;
+      margin-bottom: 15px;
+      transition: var(--transition-ease);
+    }
+
+    body.dark-mode article p {
+      color: var(--dark-text);
+    }
+
+    /* Footer */
+    footer {
+      background: var(--light-footer-bg);
+      color: white;
+      padding: 25px;
+      text-align: center;
+      margin-top: 40px;
+      transition: var(--transition-ease);
+      box-shadow: 0 -2px 10px var(--light-shadow);
+    }
+
+    body.dark-mode footer {
+      background: var(--dark-footer-bg);
+      box-shadow: 0 -2px 10px var(--dark-shadow);
+    }
+
+    footer p {
+      margin-bottom: 10px;
+      font-size: 0.95rem;
+    }
+
+    footer a {
+      color: #a0c4ff;
+      margin: 0 12px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    footer a:hover {
+      color: #e0e0e0;
+      text-decoration: underline;
+    }
+
+    /* Theme Toggle Switch */
+    .theme-toggle {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-left: 20px;
+      font-weight: 500;
+      color: white; /* Desktop header color */
+    }
+
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 50px;
+      height: 24px;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: 0.4s;
+      border-radius: 24px;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 16px;
+      width: 16px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      transition: 0.4s;
+      border-radius: 50%;
+    }
+
+    input:checked + .slider {
+      background-color: var(--info-color);
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(26px);
+    }
+
+    /* Popup Box Styles */
+    .popup-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      visibility: hidden;
+      opacity: 0;
+      transition: visibility 0s, opacity 0.3s ease;
+    }
+
+    .popup-overlay.show {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .popup-box {
+      background-color: var(--light-popup-bg);
+      padding: 40px;
+      border-radius: var(--border-radius-md);
+      box-shadow: 0 10px 30px var(--light-popup-shadow);
+      text-align: center;
+      max-width: 90%;
+      width: 450px;
+      position: relative;
+      transform: scale(0.9);
+      transition: var(--transition-popup);
+    }
+
+    .popup-overlay.show .popup-box {
+      transform: scale(1);
+    }
+
+    body.dark-mode .popup-box {
+      background-color: var(--dark-popup-bg);
+      color: var(--dark-popup-text);
+      box-shadow: 0 10px 30px var(--dark-popup-shadow);
+    }
+
+    .popup-box h2 {
+      margin-bottom: 25px;
+      font-size: 2rem;
+      color: var(--light-popup-text);
+      font-weight: 700;
+    }
+
+    body.dark-mode .popup-box h2 {
+      color: var(--dark-popup-text);
+    }
+
+    .popup-box p {
+      margin-bottom: 30px;
+      font-size: 1.15rem;
+      line-height: 1.6;
+      color: #666;
+    }
+
+    body.dark-mode .popup-box p {
+      color: var(--dark-popup-text);
+    }
+
+    .popup-box button {
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 14px 30px;
+      border-radius: var(--border-radius-sm);
+      cursor: pointer;
+      font-size: 1.1rem;
+      font-weight: 600;
+      transition: var(--transition-ease);
+    }
+
+    .popup-box button:hover {
+      background-color: var(--primary-hover);
+      transform: translateY(-3px);
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .popup-box button:active {
+      transform: translateY(0);
+      box-shadow: none;
+    }
+
+    /* Responsive Design */
+    @media(min-width: 768px) {
+      .menu-icon {
+        display: none;
+      }
+      nav {
+        display: flex !important;
+        position: static;
+        flex-direction: row;
+        background: none !important; /* REMOVED BACKGROUND ON DESKTOP */
+        width: auto;
+        box-shadow: none; /* ENSURED NO SHADOW ON DESKTOP */
+        transform: translateY(0);
+        opacity: 1;
+      }
+      nav a {
+        border: none; /* ENSURED NO BORDER ON DESKTOP LINKS */
+        padding: 10px 15px;
+        color: white;
+        background: none;
+        padding-left: 15px; /* Reset padding for desktop */
+      }
+      nav a:hover {
+        background: rgba(255,255,255,0.1);
+        border-radius: var(--border-radius-sm);
+      }
+      .theme-toggle {
+        margin-left: 30px;
+      }
+
+      /* Profile Box Desktop Adjustments */
+      .profile-box {
+        width: 50%; /* Set profile box width to 50% */
+        max-width: 600px; /* Optional: cap max width for very large screens */
+        margin: 0px auto; /* Center the profile box */
+      }
+      .button-group {
+        flex-direction: row;
+      }
+      .find-new-btn {
+        width: 100%; /* Make "Find a new profile" full width on desktop */
+        margin-top: 15px; /* Add some space above it */
+      }
+    }
+
+    /* Responsive Ad Content */
+.desktop-ad-content {
+  display: block;
+}
+
+.mobile-ad-content {
+  display: none;
+}
+
+.in-article-ad-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px auto;
+  padding: 5px 5px;
+  background: var(--light-ad-bg);
+  transition: var(--transition-ease);
+  max-width: 90%;
+}
+
+body.dark-mode .in-article-ad-container {
+  background: var(--dark-bg);
+}
+
+.in-article-ad-container h3 {
+  font-size: 1rem;
+  margin-bottom: 12px;
+  font-weight: 600;
+  color: inherit;
+}
+
+/* Mobile Styles */
+@media (max-width: 767px) {
+  .desktop-ad-content {
+    display: none;
+  }
+  
+  .mobile-ad-content {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .in-article-ad-container {
+    margin: 20px 15px;
+    max-width: 100%;
+  }
+}
+
+/* Desktop Styles */
+@media (min-width: 768px) {
+  .desktop-ad-content {
+    display: block;
+  }
+  
+  .mobile-ad-content {
+    display: none;
+  }
+  
+  .in-article-ad-container {
+    width: 80%;
+    max-width: 600px;
+  }
+}
+    @media (max-width: 767px) {
+      /* Mobile specific adjustments to ensure proper rendering without desktop overrides */
+      nav .theme-toggle {
+        padding: 18px 25px; /* Consistent with other nav links */
+        justify-content: space-between;
+        margin-left: 0;
+        border-bottom: none; /* REMOVED BORDER FOR MOBILE THEME TOGGLE */
+      }
+      header {
+           padding: 5px 25px; 
+        }
+        body.dark-mode header {
+           padding: 5px 25px;   
+        }
+      body.dark-mode nav .theme-toggle {
+        border-bottom: none; /* REMOVED BORDER FOR MOBILE THEME TOGGLE DARK MODE */
+      }
+      .profile-box {
+        margin: 20px 15px;
+        padding: 25px;
+      }
+      .round-image {
+        width: 100px;
+        height: 100px;
+      }
+      .name-city {
+        font-size: 1.3rem;
+      }
+      .button-group {
+        flex-direction: column;
+      }
+      .button-group button, .find-new-btn {
+        margin: 5px 0;
+      }
+      article {
+        padding: 20px 15px;
+      }
+      article h1 {
+        font-size: 1.7rem;
+      }
+      .popup-box {
+        padding: 30px 20px;
+        width: 95%;
+      }
+      .popup-box h2 {
+        font-size: 1.6rem;
+      }
+      .popup-box p {
+        font-size: 1rem;
+      }
+    }
+    .profile-ad-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 24px;
+  margin: 25px 25px;
+}
+.ad-sponsored {
+  display: none;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  background: var(--light-ad-bg);
+  padding: 8px 0;
+  text-align: center;
+  color: #666;
+}
+body.dark-mode .ad-sponsored {
+  background: var(--dark-bg);
+  color: var(--dark-text);
+}
+.ad-sponsored h3 {
+  font-size: 1rem;
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+.ad-rect {
+  width: 300px;
+  height: 250px;
+  background: #e0e0e0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #888;
+  font-size: 1.1rem;
+}
+body.dark-mode .ad-rect {
+  background: var(--dark-bg);
+  color: #e2e8f0;
+}
+
+/* Desktop: show left/right ads, hide mobile ad */
+@media (min-width: 768px) {
+  .ad-sponsored-left, .ad-sponsored-right {
+    display: flex;
+    flex-direction: column;
+    min-width: 300px;
+    max-width: 300px;
+  }
+  .ad-sponsored-mobile {
+    display: none;
+  }
+}
+
+/* Mobile: show only bottom ad, hide left/right ads */
+@media (max-width: 767px) {
+  .profile-ad-wrapper {
+    display: block;
+    margin: 0;
+  }
+  .ad-sponsored-left, .ad-sponsored-right {
+    display: none;
+  }
+  .ad-sponsored-mobile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 18px;
+    
+    width: 100%;
+    max-width: 90%;
+  }
+  .ad-rect {
+    width: 300px;
+    height: 250px;
+  }
+}
+  </style>
+  <script src="ad-loader.js" defer></script>
+  <script src="logo-loader.js"></script>
+</head>
+<body>
+
+  <header>
+    <div class="logo">EDUCONNECT</div>
+    <div class="menu-icon" onclick="toggleMenu()">☰</div>
+    <nav id="navMenu">
+      <a href="index.html">Home</a>
+      <a href="about-us.html">About Us</a>
+      <a href="contact.html">Contact Us</a>
+      <div class="theme-toggle">
+        <span>Dark Mode</span>
+        <label class="switch">
+          <input type="checkbox" id="themeSwitch" onchange="toggleTheme()">
+          <span class="slider"></span>
+        </label>
+      </div>
+    </nav>
+  </header>
+
+  <div class="ad-placeholder">
+  <h3>Sponsored Content</h3>
+  <div class="desktop-ad-content">
+    <div id="ad-container-1"></div>
+  </div>
+  <div class="mobile-ad-content">
+    <div class="ad-rect">
+      <div id="ad-container-mobile-header"></div>
+    </div>
+  </div>
+</div>
+  
+  <div class="profile-ad-wrapper">
+  <div class="ad-sponsored ad-sponsored-left">
+    <h3>Sponsored</h3>
+    <div class="ad-rect"><div id="ad-container-2"></div></div>
+  </div>
+
+  <div class="profile-box">
+    <img id="profileImg" src="" alt="Profile" class="round-image" />
+    <div id="status" class="status">Loading...</div>
+    <div id="nameCity" class="name-city"></div>
+
+    <div class="button-group">
+      <button class="video-call" id="videoCallBtn" disabled>Video Call (wait...20)</button>
+      <button class="chat-now" id="chatNowBtn" disabled>Chat Now (wait...20)</button>
+    </div>
+    <button class="find-new-btn" onclick="loadRandomProfile()">Find a New Profile</button>
+  </div>
+  <div class="ad-sponsored ad-sponsored-right">
+    <h3>Sponsored</h3>
+    <div class="ad-rect"><div id="ad-container-3"></div></div>
+  </div>
+</div>
+<!-- For mobile, ad below profile box -->
+<div class="ad-sponsored ad-sponsored-mobile">
+  <h3>Sponsored</h3>
+  <div class="ad-rect">
+    <div id="ad-container-mobile-profile"></div> <!-- Added container ID -->
+  </div>
+</div>
+
+  <article>
+   
+  <h1>Best MBA Colleges in Kolkata – Top Institutes for Management Studies</h1>
+
+  <p>If you want to do MBA in Kolkata, you are in the right place! Kolkata has some of the best MBA colleges in India. Many students dream of studying in these top MBA colleges in Kolkata because they offer quality education, good placements, and experienced teachers.</p>
+  <!-- ADD THIS IN-ARTICLE AD CONTAINER -->
+  <div class="in-article-ad-container">
+    <h3>Sponsored Content</h3>
+    <div class="ad-rect">
+      <div id="ad-container-article"></div>
+    </div>
+  </div>
+
+  <p>In this article, we will discuss the best management colleges in Kolkata, their fees, admission process, and placement records. Whether you want to study in a government MBA college in Kolkata or a private MBA college in Kolkata, this guide will help you choose the right institute.</p>
+
+  <h2>Why Choose Kolkata for MBA?</h2>
+  <ul>
+    <li>Affordable cost of living compared to Delhi, Mumbai, or Bangalore</li>
+    <li>Top-ranked MBA colleges in Kolkata with excellent faculty</li>
+    <li>Good job opportunities after completing MBA in Kolkata</li>
+    <li>Many reputed companies visit for campus placements</li>
+  </ul>
+
+  <p>Now, let’s look at the best MBA colleges in Kolkata for 2024.</p>
+
+  <h2>1. Indian Institute of Management Calcutta (IIM Calcutta)</h2>
+  <p>IIM Calcutta is one of the top MBA colleges in Kolkata and even in India. It is ranked among the best IIMs in India.</p>
+  <h3>Key Features:</h3>
+  <ul>
+    <li>Course: MBA (2 years)</li>
+    <li>Fees: ₹23 lakhs (approx.)</li>
+    <li>Entrance Exam: CAT (Common Admission Test)</li>
+    <li>Average Salary: ₹30+ LPA</li>
+    <li>Top Recruiters: Google, Amazon, McKinsey, TATA, HUL</li>
+  </ul>
+
+  <h2>2. Xavier University Kolkata (XUB)</h2>
+  <p>Xavier University Kolkata is another top-ranked MBA college in Kolkata. It is famous for its MBA in Business Management (BM) and Human Resource Management (HRM).</p>
+  <h3>Key Features:</h3>
+  <ul>
+    <li>Course: MBA (2 years)</li>
+    <li>Fees: ₹12-15 lakhs</li>
+    <li>Entrance Exam: XAT/CAT/GMAT</li>
+    <li>Average Salary: ₹12-15 LPA</li>
+    <li>Top Recruiters: Deloitte, PwC, ICICI Bank, ITC</li>
+  </ul>
+
+  <h2>3. Indian Institute of Social Welfare and Business Management (IISWBM)</h2>
+  <p>IISWBM is one of the oldest MBA colleges in Kolkata. It is a government MBA college in Kolkata and offers affordable MBA programs.</p>
+  <h3>Key Features:</h3>
+  <ul>
+    <li>Course: MBA (2 years)</li>
+    <li>Fees: ₹2-3 lakhs</li>
+    <li>Entrance Exam: CAT/MAT/CMAT</li>
+    <li>Average Salary: ₹5-8 LPA</li>
+    <li>Top Recruiters: SBI, PNB, Wipro, Capgemini</li>
+  </ul>
+
+  <h2>4. Calcutta University – Department of Business Management (DBM)</h2>
+  <p>Calcutta University is one of the best government MBA colleges in Kolkata. It offers MBA at a very low fee.</p>
+  <h3>Key Features:</h3>
+  <ul>
+    <li>Course: MBA (2 years)</li>
+    <li>Fees: ₹50,000 – ₹1 lakh</li>
+    <li>Entrance Exam: CUMAT (Calcutta University Management Aptitude Test)</li>
+    <li>Average Salary: ₹4-6 LPA</li>
+    <li>Top Recruiters: Banks, Govt. Jobs, Private Companies</li>
+  </ul>
+
+  <h2>5. Institute of Engineering & Management (IEM) Kolkata</h2>
+  <p>IEM Kolkata is a private MBA college in Kolkata with good industry connections.</p>
+  <h3>Key Features:</h3>
+  <ul>
+    <li>Course: MBA (2 years)</li>
+    <li>Fees: ₹5-7 lakhs</li>
+    <li>Entrance Exam: CAT/MAT/CMAT</li>
+    <li>Average Salary: ₹6-10 LPA</li>
+    <li>Top Recruiters: TCS, Infosys, Cognizant</li>
+  </ul>
+
+  <h2>6. Jadavpur University – Department of Business Management</h2>
+  <p>Jadavpur University is a top government MBA college in Kolkata. It offers MBA at a very low cost.</p>
+  <h3>Key Features:</h3>
+  <ul>
+    <li>Course: MBA (2 years)</li>
+    <li>Fees: ₹1-2 lakhs</li>
+    <li>Entrance Exam: CAT/MAT</li>
+    <li>Average Salary: ₹5-8 LPA</li>
+    <li>Top Recruiters: IT Companies, Banks, MNCs</li>
+  </ul>
+
+  <h2>7. Army Institute of Management (AIM), Kolkata</h2>
+  <p>AIM Kolkata is a private MBA college in Kolkata with a focus on leadership and management skills.</p>
+  <h3>Key Features:</h3>
+  <ul>
+    <li>Course: MBA (2 years)</li>
+    <li>Fees: ₹4-6 lakhs</li>
+    <li>Entrance Exam: CAT/MAT</li>
+    <li>Average Salary: ₹6-9 LPA</li>
+    <li>Top Recruiters: Indian Army, Corporate Companies</li>
+  </ul>
+
+  <h2>8. Techno India University, Kolkata</h2>
+  <p>Techno India is a private MBA college in Kolkata with modern teaching methods.</p>
+  <h3>Key Features:</h3>
+  <ul>
+    <li>Course: MBA (2 years)</li>
+    <li>Fees: ₹3-5 lakhs</li>
+    <li>Entrance Exam: MAT/CMAT</li>
+    <li>Average Salary: ₹4-7 LPA</li>
+    <li>Top Recruiters: Startups, IT Companies</li>
+  </ul>
+
+  <h2>How to Get Admission in Best MBA Colleges in Kolkata?</h2>
+  <ol>
+    <li>Pass 12th and Graduation (Minimum 50% marks)</li>
+    <li>Appear for Entrance Exams (CAT, MAT, XAT, CMAT)</li>
+    <li>Apply to Colleges (Check official websites)</li>
+    <li>Clear GD & PI (Group Discussion & Personal Interview)</li>
+    <li>Get Selected & Pay Fees</li>
+  </ol>
+
+  <h2>Which MBA College in Kolkata is Best for You?</h2>
+  <ul>
+    <li>For Top Placements: IIM Calcutta, XUB</li>
+    <li>For Low Fees: Calcutta University, IISWBM</li>
+    <li>For Private Colleges: IEM, Techno India</li>
+    <li>For Government Colleges: Jadavpur University, IISWBM</li>
+  </ul>
+
+  <h2>Conclusion</h2>
+  <p>Kolkata has many best MBA colleges for students. If you want high salary jobs, choose IIM Calcutta or XUB. If you want low fees, go for Calcutta University or IISWBM.</p>
+  <p>Before selecting a college, check:</p>
+  <ul>
+    <li>✔ Fees</li>
+    <li>✔ Placements</li>
+    <li>✔ Course Structure</li>
+    <li>✔ Location</li>
+  </ul>
+  <p>We hope this guide helps you choose the best MBA college in Kolkata. Work hard, prepare well, and you will surely succeed!</p>
+
+  <h2>FAQs About Best MBA Colleges in Kolkata</h2>
+  <p>Q1. Which is the No. 1 MBA college in Kolkata?<br>
+  Ans: IIM Calcutta is the best MBA college in Kolkata.</p>
+
+  <p>Q2. What is the fees of MBA in Kolkata?<br>
+  Ans: Fees range from ₹50,000 (government colleges) to ₹25 lakhs (IIM Calcutta).</p>
+
+  <p>Q3. Which entrance exam is best for MBA in Kolkata?<br>
+  Ans: CAT is the best for IIMs, while MAT/CMAT is good for other colleges.</p>
+
+  <p>Q4. Can I get a job after MBA in Kolkata?<br>
+  Ans: Yes, top MBA colleges in Kolkata have good placements.</p>
+
+  <p>Q5. Which MBA college in Kolkata has the lowest fees?<br>
+  Ans: Calcutta University and IISWBM have the lowest MBA fees in Kolkata.</p>
+
+  <p>If you want to study in the best MBA colleges in Kolkata, start preparing today! 🚀</p>
+</body>
+</html>
+
+  </article>
+
+  <footer>
+    <p>&copy; 2025 EduConnect. All rights reserved.</p>
+    <div>
+      <a href="privacy-policy.html">Privacy Policy</a>
+      <a href="about-us.html">About Us</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </footer>
+
+  <div id="offlinePopup" class="popup-overlay">
+    <div class="popup-box">
+      <h2>User Status</h2>
+      <p>This user is currently offline. Please try again later!</p>
+      <button onclick="hidePopup()">Got It!</button>
+    </div>
+  </div>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById("navMenu").classList.toggle("show");
+      applyNavTheme();
+    }
+
+    function toggleTheme() {
+      document.body.classList.toggle("dark-mode");
+      const isDark = document.body.classList.contains("dark-mode");
+      localStorage.setItem("preferredTheme", isDark ? "dark" : "light");
+      applyNavTheme();
+    }
+
+    function applyNavTheme() {
+      const navMenu = document.getElementById("navMenu");
+      const isDarkBody = document.body.classList.contains("dark-mode");
+      const isMobile = window.innerWidth < 768;
+
+      if (isMobile) {
+        // Mobile-specific background and borders remain for mobile nav
+        if (isDarkBody) {
+          navMenu.style.backgroundColor = 'var(--dark-nav-mobile-bg)';
+          navMenu.querySelectorAll('a').forEach(link => {
+            link.style.color = 'var(--dark-nav-mobile-link)';
+            // Mobile nav links still have borders for separation if desired
+            // link.style.borderBottomColor = 'var(--dark-nav-mobile-border)';
+          });
+          navMenu.querySelector('.theme-toggle span').style.color = 'var(--dark-nav-mobile-link)';
+        } else {
+          navMenu.style.backgroundColor = 'var(--light-nav-mobile-bg)';
+          navMenu.querySelectorAll('a').forEach(link => {
+            link.style.color = 'var(--light-nav-mobile-link)';
+            // Mobile nav links still have borders for separation if desired
+            // link.style.borderBottomColor = 'var(--light-nav-mobile-border)';
+          });
+          navMenu.querySelector('.theme-toggle span').style.color = 'var(--light-nav-mobile-link)';
+        }
+      } else {
+        // Desktop styles: ensure no inline background, links white, no borders
+        navMenu.style.backgroundColor = ''; // Clears inline background set for mobile
+        navMenu.querySelectorAll('a').forEach(link => {
+          link.style.color = 'white';
+          link.style.borderBottomColor = ''; // Clears inline border set for mobile
+        });
+        navMenu.querySelector('.theme-toggle span').style.color = 'white';
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const savedTheme = localStorage.getItem("preferredTheme");
+      
+      // Default to dark mode if no preference saved, or if preference is dark
+      if (savedTheme === null || savedTheme === "dark") {
+        document.body.classList.add("dark-mode");
+        document.getElementById("themeSwitch").checked = true;
+        if (savedTheme === null) {
+          localStorage.setItem("preferredTheme", "dark");
+        }
+      }
+      
+      applyNavTheme();
+      window.addEventListener('resize', applyNavTheme);
+    });
+
+    // Popup functions
+    function showPopup() {
+      document.getElementById('offlinePopup').classList.add('show');
+    }
+
+    function hidePopup() {
+      document.getElementById('offlinePopup').classList.remove('show');
+    }
+
+    let currentUserIsOnline = false;
+
+    let count = 20;
+    let countdownInterval = null;
+    const videoBtn = document.getElementById('videoCallBtn');
+    const chatBtn = document.getElementById('chatNowBtn');
+    const statusElement = document.getElementById('status');
+
+    function startInitialCountdown() {
+      if (countdownInterval === null) {
+        countdownInterval = setInterval(() => {
+          count--;
+          videoBtn.textContent = `Video Call (wait...${count})`;
+          chatBtn.textContent = `Chat Now (wait...${count})`;
+
+          if (count <= 0) {
+            clearInterval(countdownInterval);
+            countdownInterval = "finished";
+            videoBtn.textContent = "Video Call";
+            chatBtn.textContent = "Chat Now";
+            videoBtn.disabled = false;
+            chatBtn.disabled = false;
+            videoBtn.classList.add("enabled");
+            chatBtn.classList.add("enabled");
+
+            videoBtn.removeEventListener("click", handleCallButtonClick);
+            chatBtn.removeEventListener("click", handleCallButtonClick);
+            videoBtn.addEventListener("click", handleCallButtonClick);
+            chatBtn.addEventListener("click", handleCallButtonClick);
+          }
+        }, 1000);
+      }
+    }
+
+    function handleCallButtonClick() {
+      if (currentUserIsOnline) {
+        localStorage.setItem("preferredTheme", document.body.classList.contains("dark-mode") ? "dark" : "light");
+        window.location.href = "second-page.html";
+      } else {
+        showPopup();
+      }
+    }
+
+    // Random Profile Data
+    const names = ["Priya Sharma", "Anjali Singh", "Kashvi jain", "Anaya Singh", "Kiara Reddy", "Shanaya Mehta", "Myra Patel", "Siya Gupta", "Zara Khan", "Aditi Rao", "Ria Das", "Jia Verma", "Neha Verma", "Ritika Mehta", "Pooja Gupta", "Kajal Yadav", "Divya Rai", "Sakshi Dubey", "Aisha Khan", "Sana Ali"];
+    const cities = ["Delhi", "Mumbai", "Kolkata", "Bangalore", "Pune", "Chennai", "Jaipur", "Kolkata", "Hyderabad", "Ahmedabad", "Delhi", "Mumbai", "Kolkata", "Bangalore", "Pune", "Chennai", "Jaipur", "Hyderabad", "Ahmedabad","Lucknow"];
+    const imageSources = [
+      "img/d1.webp",
+      "img/d2.webp",
+      "img/d3.webp",
+      "img/d4.webp",
+      "img/d5.webp",
+      "img/d6.webp",
+      "img/d7.webp",
+      "img/d8.webp",
+      "img/d9.webp",
+      "img/d10.webp",
+      "img/d11.webp",
+      "img/d12.webp",
+      "img/d13.webp",
+      "img/d14.webp",
+      "img/d15.webp",
+      "img/d16.webp",
+      "img/d17.webp",
+      "img/d18.webp",
+      "img/d19.webp",
+      "img/d20.webp"
+    ];
+
+    function loadRandomProfile() {
+      const img = document.getElementById("profileImg");
+      const nameCity = document.getElementById("nameCity");
+      const status = document.getElementById("status");
+
+      const randName = names[Math.floor(Math.random() * names.length)];
+      const randCity = cities[Math.floor(Math.random() * cities.length)];
+      const randImg = imageSources[Math.floor(Math.random() * imageSources.length)];
+      currentUserIsOnline = Math.random() < 0.6;
+
+      img.src = randImg;
+      nameCity.textContent = `${randName}, ${randCity}`;
+      status.textContent = currentUserIsOnline ? "Online" : "Offline";
+      status.className = "status " + (currentUserIsOnline ? "online" : "offline");
+
+      if (countdownInterval === "finished") {
+        videoBtn.disabled = false;
+        chatBtn.disabled = false;
+        videoBtn.classList.add("enabled");
+        chatBtn.classList.add("enabled");
+      } else {
+        videoBtn.disabled = true;
+        chatBtn.disabled = true;
+        videoBtn.classList.remove("enabled");
+        chatBtn.classList.remove("enabled");
+      }
+    }
+
+    window.onload = () => {
+      loadRandomProfile();
+      startInitialCountdown();
+    };
+  </script>
+
+</body>
+</html>
